@@ -7,6 +7,9 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './calendar/calendar.component';
 
+import 'flatpickr/dist/flatpickr.css';
+import { FlatpickrModule } from 'angularx-flatpickr';
+
 @NgModule({
   declarations: [AppComponent, CalendarComponent],
   imports: [
@@ -15,7 +18,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    FlatpickrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
