@@ -92,10 +92,9 @@
 
 <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
-<br /><br /><br />
 <!-- IMPORTANTE: HAY QUE IMPORTAR ESTO:  "./node_modules/flatpickr/dist/flatpickr.css" ,
  en el archivo angular.json -->
-<h3>
+<h3 class="mt-4">
   Edit events
   <button class="btn btn-primary pull-right" (click)="addEvent()">
     Add new
@@ -107,11 +106,12 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Title</th>
+        <th>Vessel</th>
+        <th>Vessel Code</th>
         <th>Primary color</th>
         <th>Secondary color</th>
-        <th>Starts at</th>
-        <th>Ends at</th>
+        <th>Actual Arrival</th>
+        <th>Actual Departure</th>
         <th>Remove</th>
       </tr>
     </thead>
@@ -123,6 +123,14 @@
             type="text"
             class="form-control"
             [(ngModel)]="event.title"
+            (keyup)="refresh.next()"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="event.code"
             (keyup)="refresh.next()"
           />
         </td>
@@ -180,6 +188,7 @@
   </table>
 </div>
 
+<!-- EVENTO DRAG AND DROP-->
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
     <h5 class="modal-title">Event action occurred</h5>

@@ -48,7 +48,8 @@ const colors: any = {
 export class CalendarComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-  view: CalendarView = CalendarView.Month;
+  // Calendar Default view (Week|Month|Day)
+  view: CalendarView = CalendarView.Week;
 
   CalendarView = CalendarView;
 
@@ -79,11 +80,53 @@ export class CalendarComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
+  // events: CalendarEvent[] = [
+  //   {
+  //     start: subDays(startOfDay(new Date()), 1),
+  //     end: addDays(new Date(), 1),
+  //     title: 'A 3 day event',
+  //     color: colors.red,
+  //     actions: this.actions,
+  //     allDay: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     },
+  //     draggable: true
+  //   },
+  //   {
+  //     start: startOfDay(new Date()),
+  //     title: 'An event with no end date',
+  //     color: colors.yellow,
+  //     actions: this.actions
+  //   },
+  //   {
+  //     start: subDays(endOfMonth(new Date()), 3),
+  //     end: addDays(endOfMonth(new Date()), 3),
+  //     title: 'A long event that spans 2 months',
+  //     color: colors.blue,
+  //     allDay: true
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 2),
+  //     end: addHours(new Date(), 2),
+  //     title: 'A draggable and resizable event',
+  //     color: colors.yellow,
+  //     actions: this.actions,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     },
+  //     draggable: true
+  //   }
+  // ];
+
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+      title: 'VICENT THOMAS BRIDGE',
+      code: '352',
       color: colors.red,
       actions: this.actions,
       allDay: true,
@@ -95,21 +138,24 @@ export class CalendarComponent implements OnInit {
     },
     {
       start: startOfDay(new Date()),
-      title: 'An event with no end date',
+      title: 'VANCOUVER BRIDGE',
+      code: '357',
       color: colors.yellow,
       actions: this.actions
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+      title: 'VALENCIA BRIDGE',
+      code: '351',
       color: colors.blue,
       allDay: true
     },
     {
       start: addHours(startOfDay(new Date()), 2),
       end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
+      title: 'EVER URSULA',
+      code: '316',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
@@ -166,7 +212,8 @@ export class CalendarComponent implements OnInit {
     this.events = [
       ...this.events,
       {
-        title: 'New event',
+        title: 'VESSEL NAME',
+        code: 'VESSEL CODE',
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
         color: colors.red,
