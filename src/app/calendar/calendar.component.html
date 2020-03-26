@@ -77,6 +77,9 @@
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    [dayStartHour]="dayStartHour"
+    [dayEndHour]="dayEndHour"
+    [currentTimeMarkerTemplate]="currentTimeMarkerTemplate"
   >
   </mwl-calendar-week-view>
   <mwl-calendar-day-view
@@ -86,6 +89,7 @@
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
+    [currentTimeMarkerTemplate]="currentTimeMarkerTemplate"
   >
   </mwl-calendar-day-view>
 </div>
@@ -98,6 +102,9 @@
   Edit events
   <button class="btn btn-primary pull-right" (click)="addEvent()">
     Add new
+  </button>
+  <button class="btn btn-primary ml-2" (click)="showMarkerChange()">
+    Show Marker
   </button>
   <div class="clearfix"></div>
 </h3>
@@ -211,4 +218,22 @@
       OK
     </button>
   </div>
+</ng-template>
+
+<!-- ShowMarker-->
+<ng-template
+  #currentTimeMarkerTemplate
+  let-columnDate="columnDate"
+  let-dayStartHour="dayStartHour"
+  let-dayStartMinute="dayStartMinute"
+  let-dayEndHour="dayEndHour"
+  let-dayEndMinute="dayEndMinute"
+  let-isVisible="isVisible"
+  let-topPx="topPx"
+>
+  <div
+    class="cal-current-time-marker"
+    *ngIf="isVisible && showMarker"
+    [style.top.px]="topPx"
+  ></div>
 </ng-template>

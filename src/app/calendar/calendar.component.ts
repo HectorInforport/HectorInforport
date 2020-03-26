@@ -13,7 +13,8 @@ import {
   endOfMonth,
   isSameDay,
   isSameMonth,
-  addHours
+  addHours,
+  getHours
 } from 'date-fns';
 
 import { Subject } from 'rxjs';
@@ -50,6 +51,13 @@ export class CalendarComponent implements OnInit {
 
   // Calendar Default view (Week|Month|Day)
   view: CalendarView = CalendarView.Week;
+
+  // dayStart and dayEnt
+  dayStartHour = Math.max(0, getHours(new Date()) - 2);
+  dayEndHour = Math.min(23, getHours(new Date()) + 2);
+
+  // show marker
+  showMarker = false;
 
   CalendarView = CalendarView;
 
@@ -236,5 +244,9 @@ export class CalendarComponent implements OnInit {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  showMarkerChange() {
+    this.showMarker = !this.showMarker;
   }
 }
