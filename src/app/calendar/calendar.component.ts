@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef
 } from '@angular/core';
@@ -19,12 +18,14 @@ import {
 
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+/*** Sustituimos el CalendarEvent de 'angular-calendar por un personalizado añadiendo campos a la interfaz */
+import { CalendarEvent } from './interface/calendar-utils';
 import {
-  CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+// import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 
 const colors: any = {
   red: {
