@@ -61,6 +61,9 @@ export class VesselCalendarComponent implements OnInit {
   /* dayStartHour = Math.max(0, getHours(new Date()) - 2);
   dayEndHour = Math.min(23, getHours(new Date()) + 2);*/
 
+  dayStartHour = 0;
+  dayEndHour = 0;
+
   // TODO marker
   // show marker
   showMarker = false;
@@ -320,7 +323,7 @@ export class VesselCalendarComponent implements OnInit {
       ...this.events,
       {
         title: 'VESSEL NAME',
-        code: 'VESSEL CODE',
+        scale: 'VESSEL CODE',
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
         color: colors.red,

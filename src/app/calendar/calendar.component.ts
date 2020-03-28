@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  TemplateRef
-} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import {
   startOfDay,
   endOfDay,
@@ -135,7 +130,7 @@ export class CalendarComponent implements OnInit {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
       title: 'VICENT THOMAS BRIDGE',
-      code: '352',
+      scale: '352',
       color: colors.red,
       actions: this.actions,
       allDay: true,
@@ -148,7 +143,7 @@ export class CalendarComponent implements OnInit {
     {
       start: startOfDay(new Date()),
       title: 'VANCOUVER BRIDGE',
-      code: '357',
+      scale: '357',
       color: colors.yellow,
       actions: this.actions
     },
@@ -156,7 +151,7 @@ export class CalendarComponent implements OnInit {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
       title: 'VALENCIA BRIDGE',
-      code: '351',
+      scale: '351',
       color: colors.blue,
       allDay: true
     },
@@ -164,7 +159,7 @@ export class CalendarComponent implements OnInit {
       start: addHours(startOfDay(new Date()), 2),
       end: addHours(new Date(), 2),
       title: 'EVER URSULA',
-      code: '316',
+      scale: '316',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
@@ -222,7 +217,7 @@ export class CalendarComponent implements OnInit {
       ...this.events,
       {
         title: 'VESSEL NAME',
-        code: 'VESSEL CODE',
+        scale: 'VESSEL CODE',
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
         color: colors.red,
