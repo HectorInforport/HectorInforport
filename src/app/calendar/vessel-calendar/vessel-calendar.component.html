@@ -101,15 +101,12 @@
   >
   </mwl-calendar-day-view>
 </div>
-
 <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
 <!-- IMPORTANTE: HAY QUE IMPORTAR ESTO:  "./node_modules/flatpickr/dist/flatpickr.css" ,
    en el archivo angular.json -->
 <h3 class="mt-4">
-  Edit events <i class="fas fa-arrow"></i> <i class="fa fa-fw fa-pencil"></i>
-  <i class="fas fa-users"></i>
-  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+  Edit events
   <button class="btn btn-primary pull-right" (click)="addEvent()">
     Add new
   </button>
@@ -143,7 +140,14 @@
       <td>{{ event.end | date: 'dd/MM/yyyy' }}</td>
       <td>{{ event.start | date: 'HH:mm' }}</td>
       <td>{{ event.end | date: 'HH:mm' }}</td>
-      <td>{{ event.starboard ? 'starboard' : 'lardboard' }}</td>
+      <td *ngIf="event.bow" class="text-center">
+        <i class="fas fa-caret-left fa-4x"></i>
+      </td>
+      <td *ngIf="!event.bow" class="text-center">
+        <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
+        <i class="fas fa-caret-right fa-4x"></i>
+      </td>
+      <!-- <td>{{ event.starboard ? 'starboard' : 'lardboard' }}</td> -->
       <td [ngStyle]="{ 'background-color': event.color.secondary }">
         {{ event.color.primary }}
       </td>

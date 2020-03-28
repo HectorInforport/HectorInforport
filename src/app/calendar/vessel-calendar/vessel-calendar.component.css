@@ -7,6 +7,10 @@ pre {
   padding: 15px;
 }
 
+.altura {
+  height: 70px !important;
+}
+
 .cal-current-time-marker {
   height: 3px;
   background: linear-gradient(270deg, #ec268d, #1f55dd);

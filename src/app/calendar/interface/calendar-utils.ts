@@ -47,6 +47,8 @@ export interface CalendarEvent<MetaType = any> {
   regularLine?: string;
   starboard?: boolean;
   larboard?: boolean;
+  bow?: boolean;
+  stern?: boolean;
   length?: string;
   beam?: string;
   shippingLine?: string;
