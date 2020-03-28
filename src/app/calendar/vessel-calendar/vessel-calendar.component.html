@@ -119,28 +119,26 @@
   <thead class="thead-light">
     <tr>
       <th></th>
-      <th scope="col">Vesel Code</th>
-      <th scope="col">Vesel</th>
-      <th scope="col">Start</th>
-      <th scope="col">End</th>
-      <th scope="col">Start Hour</th>
-      <th scope="col">Start Minute</th>
+      <th scope="col">Vessel</th>
+      <th scope="col">Scale</th>
+      <th scope="col">State</th>
+      <th scope="col">Arrival</th>
+      <th scope="col">Departure</th>
+      <th scope="col">Arrival Hour</th>
+      <th scope="col">Departure Hour</th>
       <th scope="col">Orientation</th>
       <th scope="col">Color</th>
-      <th scope="col">Shipping Line</th>
+      <th scope="col">Regular Line</th>
       <th scope="col">Length</th>
       <th scope="col">Beam</th>
-
-      <!--    <th scope="col">First</th>-->
-      <!--    <th scope="col">Last</th>-->
-      <!--    <th scope="col">Handle</th>-->
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let event of events; let i = index">
       <th scope="row">#{{ i + 1 }}</th>
-      <td>{{ event.code }}</td>
       <td>{{ event.title }}</td>
+      <td>{{ event.scale }}</td>
+      <td>{{ event.state }}</td>
       <td>{{ event.start | date: 'dd/MM/yyyy' }}</td>
       <td>{{ event.end | date: 'dd/MM/yyyy' }}</td>
       <td>{{ event.start | date: 'HH:mm' }}</td>
@@ -149,26 +147,10 @@
       <td [ngStyle]="{ 'background-color': event.color.secondary }">
         {{ event.color.primary }}
       </td>
-      <td>{{ event.shippingLine }}</td>
+      <td>{{ event.regularLine }}</td>
       <td>{{ event.length }}</td>
-
       <td>{{ event.beam }}</td>
-
-      <!--    <td *ngIf="event.larboard">{{event.larboard}}</td>-->
-      <!--    <td>@mdo</td>-->
     </tr>
-    <!--  <tr>-->
-    <!--    <th scope="row">2</th>-->
-    <!--    <td>Jacob</td>-->
-    <!--    <td>Thornton</td>-->
-    <!--    <td>@fat</td>-->
-    <!--  </tr>-->
-    <!--  <tr>-->
-    <!--    <th scope="row">3</th>-->
-    <!--    <td>Larry</td>-->
-    <!--    <td>the Bird</td>-->
-    <!--    <td>@twitter</td>-->
-    <!--  </tr>-->
   </tbody>
 </table>
 
@@ -200,7 +182,7 @@
           <input
             type="text"
             class="form-control"
-            [(ngModel)]="event.code"
+            [(ngModel)]="event.scale"
             (keyup)="refresh.next()"
           />
         </td>
