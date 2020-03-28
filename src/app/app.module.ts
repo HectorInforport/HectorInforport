@@ -13,6 +13,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VesselCalendarComponent } from './calendar/vessel-calendar/vessel-calendar.component';
+// import { MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, CalendarComponent, VesselCalendarComponent],
@@ -20,6 +22,8 @@ import { VesselCalendarComponent } from './calendar/vessel-calendar/vessel-calen
     CommonModule,
     FormsModule,
     NgbModalModule,
+    BrowserAnimationsModule,
+    MatInputModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
