@@ -41,7 +41,10 @@ export interface CalendarEvent<MetaType = any> {
   end?: Date;
   code?: string;
   starboard?: boolean;
-  lardboard?: boolean;
+  larboard?: boolean;
+  length?: string;
+  beam?: string;
+  shippingLine?: string;
   title: string;
   color?: EventColor;
   actions?: EventAction[];

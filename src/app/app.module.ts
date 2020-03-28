@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -11,9 +12,10 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VesselCalendarComponent } from './calendar/vessel-calendar/vessel-calendar.component';
 
 @NgModule({
-  declarations: [AppComponent, CalendarComponent],
+  declarations: [AppComponent, CalendarComponent, VesselCalendarComponent],
   imports: [
     CommonModule,
     FormsModule,
