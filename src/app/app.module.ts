@@ -15,6 +15,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VesselCalendarComponent } from './calendar/vessel-calendar/vessel-calendar.component';
 // import { MatInputModule } from '@angular/material/input';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [AppComponent, CalendarComponent, VesselCalendarComponent],
@@ -24,6 +27,9 @@ import { MatInputModule } from '@angular/material/input';
     NgbModalModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,

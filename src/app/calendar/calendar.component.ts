@@ -20,6 +20,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+
 // import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 
 const colors: any = {
@@ -125,6 +126,9 @@ export class CalendarComponent implements OnInit {
   //   }
   // ];
 
+  dateString = '2020-03-25T17:00:00';
+  newDate = new Date(this.dateString);
+
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -167,6 +171,71 @@ export class CalendarComponent implements OnInit {
         afterEnd: true
       },
       draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'EVER URSULA2',
+      scale: '316',
+      color: colors.red,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'EVER URSULA 3',
+      scale: '316',
+      color: colors.blue,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'EVER URSULA 4',
+      scale: '316',
+      color: colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(this.newDate, 1),
+      end: addHours(this.newDate, 2),
+      title: 'EVER URSULA 5',
+      scale: '316',
+      color: colors.red,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'EVER URSULA 6',
+      scale: '316',
+      color: colors.blue,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
     }
   ];
 
@@ -174,7 +243,10 @@ export class CalendarComponent implements OnInit {
 
   constructor(private modal: NgbModal) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('GHOR', addHours(startOfDay(new Date()), 2));
+    console.log('addHours(this.newDate, 1)', addHours(this.newDate, 1));
+  }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (

@@ -7,10 +7,6 @@ pre {
   padding: 15px;
 }
 
-.altura {
-  height: 70px !important;
-}
-
 .cal-current-time-marker {
   height: 3px;
   background: linear-gradient(270deg, #ec268d, #1f55dd);
@@ -28,4 +24,33 @@ pre {
       background-position: 0 50%;
     }
   }
+}
+
+/* Material design table  */
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+tr.mat-header-row.ng-star-inserted {
+  background-color: #0062cc;
+}
+
+th.thead-dark {
+  color: white;
+}
+th.mat-header-cell {
+  color: white;
+}
+
+td.m-5.mat-cell.cdk-column-state.mat-column-state.ng-star-inserted {
+  padding: 5px;
 }

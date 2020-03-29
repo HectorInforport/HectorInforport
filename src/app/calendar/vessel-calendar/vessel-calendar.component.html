@@ -59,9 +59,9 @@
       >
         Day
       </div>
-      <div class="btn btn-outline-primary ml-2" (click)="showMarkerChange()">
+      <!-- <div class="btn btn-outline-primary ml-2" (click)="showMarkerChange()">
         Show Marker
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -101,10 +101,162 @@
   >
   </mwl-calendar-day-view>
 </div>
-<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
-<!-- IMPORTANTE: HAY QUE IMPORTAR ESTO:  "./node_modules/flatpickr/dist/flatpickr.css" ,
-   en el archivo angular.json -->
+<!-- <div class="card mt-3 bg-primary ">
+  <h5 class="card-header text-white text-center"></h5>
+</div> -->
+
+<!-- TABLA DE MATERIAL DESIGN -->
+<mat-form-field class="mt-3">
+  <input
+    matInput
+    (keyup)="applyFilter($event.target.value)"
+    placeholder="Filter"
+  />
+</mat-form-field>
+
+<table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  class="mat-elevation-z8 table-striped"
+>
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Vessel Column -->
+  <ng-container matColumnDef="vessel">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>VESSEL</th>
+    <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+  </ng-container>
+
+  <!-- Scale Column -->
+  <ng-container matColumnDef="scale">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>SCALE</th>
+    <td mat-cell *matCellDef="let element">{{ element.scale }}</td>
+  </ng-container>
+
+  <!-- State Column -->
+  <ng-container matColumnDef="state">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>STATE</th>
+    <td
+      class="p-2"
+      style="color:white;text-align: center;"
+      mat-cell
+      *matCellDef="let element"
+      [ngClass]="{
+        'text-success': element.state == 'Autorized',
+        'text-danger': element.state != 'Autorized'
+      }"
+    >
+      {{ element.state | uppercase }}
+    </td>
+  </ng-container>
+
+  <!-- Arrival Column -->
+  <ng-container matColumnDef="arrival">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ARRIVAL</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.start | date: 'dd/MM/yyyy' }}
+    </td>
+  </ng-container>
+
+  <!-- Arrival Hour Column -->
+  <ng-container matColumnDef="arrivalHour">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>HOUR</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.end | date: 'HH:mm' }}
+    </td>
+  </ng-container>
+
+  <!-- Departure Column -->
+  <ng-container matColumnDef="departure">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>DEPARTURE</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.end | date: 'dd/MM/yyyy' }}
+    </td>
+  </ng-container>
+
+  <!-- Departure Hour Column -->
+  <ng-container matColumnDef="departureHour">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>HOUR</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.end | date: 'HH:mm' }}
+    </td>
+  </ng-container>
+
+  <!-- Orientation Column -->
+  <ng-container matColumnDef="orientation">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ORIENTATION</th>
+    <td mat-cell *matCellDef="let element" class="text-center">
+      <i
+        class="fas fa-arrow-alt-circle-left fa-2x text-primary"
+        *ngIf="element.bow"
+      ></i>
+
+      <i
+        class="fas fa-arrow-alt-circle-right fa-2x text-secondary"
+        *ngIf="!element.bow"
+      ></i>
+    </td>
+  </ng-container>
+
+  <!-- Color Column -->
+  <ng-container matColumnDef="color">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>COLOR</th>
+    <td mat-cell *matCellDef="let element">
+      <i
+        class="fas fa-ship fa-2x"
+        [ngStyle]="{ color: element.color.primary }"
+      ></i>
+    </td>
+  </ng-container>
+
+  <!-- RegularLine Column -->
+  <ng-container matColumnDef="regularLine">
+    <th
+      style="text-align: center"
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+    >
+      REGULAR LINE
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.regularLine }}</td>
+  </ng-container>
+
+  <!-- Locode Column -->
+  <ng-container matColumnDef="locode">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>LOCODE</th>
+    <td mat-cell *matCellDef="let element">{{ element.locode | uppercase }}</td>
+  </ng-container>
+
+  <!-- Length Column -->
+  <ng-container matColumnDef="length">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>LENGTH</th>
+    <td mat-cell *matCellDef="let element">{{ element.length }}</td>
+  </ng-container>
+
+  <!-- Beam Column -->
+  <ng-container matColumnDef="beam">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>BEAM</th>
+    <td mat-cell *matCellDef="let element">{{ element.beam }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  [length]="100"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>
+
+<!-- FIN TABLA DE MATERIAL DESIGN -->
+
+<!-- EDIT EVENTS -->
 <h3 class="mt-4">
   Edit events
   <button class="btn btn-primary pull-right" (click)="addEvent()">
@@ -112,52 +264,6 @@
   </button>
   <div class="clearfix"></div>
 </h3>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th></th>
-      <th scope="col">Vessel</th>
-      <th scope="col">Scale</th>
-      <th scope="col">State</th>
-      <th scope="col">Arrival</th>
-      <th scope="col">Departure</th>
-      <th scope="col">Arrival Hour</th>
-      <th scope="col">Departure Hour</th>
-      <th scope="col">Orientation</th>
-      <th scope="col">Color</th>
-      <th scope="col">Regular Line</th>
-      <th scope="col">Length</th>
-      <th scope="col">Beam</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let event of events; let i = index">
-      <th scope="row">#{{ i + 1 }}</th>
-      <td>{{ event.title }}</td>
-      <td>{{ event.scale }}</td>
-      <td>{{ event.state }}</td>
-      <td>{{ event.start | date: 'dd/MM/yyyy' }}</td>
-      <td>{{ event.end | date: 'dd/MM/yyyy' }}</td>
-      <td>{{ event.start | date: 'HH:mm' }}</td>
-      <td>{{ event.end | date: 'HH:mm' }}</td>
-      <td *ngIf="event.bow" class="text-center">
-        <i class="fas fa-caret-left fa-4x"></i>
-      </td>
-      <td *ngIf="!event.bow" class="text-center">
-        <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
-        <i class="fas fa-caret-right fa-4x"></i>
-      </td>
-      <!-- <td>{{ event.starboard ? 'starboard' : 'lardboard' }}</td> -->
-      <td [ngStyle]="{ 'background-color': event.color.secondary }">
-        {{ event.color.primary }}
-      </td>
-      <td>{{ event.regularLine }}</td>
-      <td>{{ event.length }}</td>
-      <td>{{ event.beam }}</td>
-    </tr>
-  </tbody>
-</table>
-
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
@@ -244,6 +350,8 @@
   </table>
 </div>
 
+<!-- FIN EDIT EVENTS-->
+
 <!-- EVENTO DRAG AND DROP-->
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
@@ -286,3 +394,53 @@
     [style.top.px]="topPx"
   ></div>
 </ng-template>
+
+<!-- TABLA BOOTSTRAP -->
+
+<!-- IMPORTANTE: HAY QUE IMPORTAR ESTO:  "./node_modules/flatpickr/dist/flatpickr.css" ,
+   en el archivo angular.json -->
+<!-- <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th></th>
+      <th scope="col">Vessel</th>
+      <th scope="col">Scale</th>
+      <th scope="col">State</th>
+      <th scope="col">Arrival</th>
+      <th scope="col">Departure</th>
+      <th scope="col">Arrival Hour</th>
+      <th scope="col">Departure Hour</th>
+      <th scope="col">Orientation</th>
+      <th scope="col">Color</th>
+      <th scope="col">Regular Line</th>
+      <th scope="col">Length</th>
+      <th scope="col">Beam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events; let i = index">
+      <th scope="row">#{{ i + 1 }}</th>
+      <td>{{ event.title }}</td>
+      <td>{{ event.scale }}</td>
+      <td>{{ event.state }}</td>
+      <td>{{ event.start | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ event.end | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ event.start | date: 'HH:mm' }}</td>
+      <td>{{ event.end | date: 'HH:mm' }}</td>
+      <td *ngIf="event.bow" class="text-center">
+        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+      </td>
+      <td *ngIf="!event.bow" class="text-center">
+        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+      </td>
+      <td [ngStyle]="{ 'background-color': event.color.secondary }">
+        {{ event.color.primary }}
+      </td>
+      <td>{{ event.regularLine }}</td>
+      <td>{{ event.length }}</td>
+      <td>{{ event.beam }}</td>
+    </tr>
+  </tbody>
+</table> -->
+
+<!-- FIN TABLA BOOTSTRAP -->
