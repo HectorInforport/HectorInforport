@@ -18,9 +18,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { CanvasComponent } from './canvas/canvas.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, CalendarComponent, VesselCalendarComponent],
+  declarations: [
+    AppComponent,
+    CalendarComponent,
+    VesselCalendarComponent,
+    CanvasComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,6 +38,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatGridListModule,
+    HttpClientModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
