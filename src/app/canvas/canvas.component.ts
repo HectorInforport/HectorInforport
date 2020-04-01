@@ -1,7 +1,14 @@
-import {Component, OnInit, ElementRef, ViewChild, AfterViewInit, Input} from '@angular/core';
-import {CanvasService} from './canvas.service';
-import {fromEvent} from 'rxjs';
-import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  Input
+} from '@angular/core';
+import { CanvasService } from './canvas.service';
+import { fromEvent } from 'rxjs';
+import { pairwise, switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-canvas',
@@ -9,44 +16,15 @@ import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
   styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
+  constructor(private canvasService: CanvasService) {}
 
-  constructor(private canvasService: CanvasService) {
-  }
-
-  /**** CANVAS 1*****/
-
-  /*@ViewChild('mycanvas', {static: false}) myCanvas: ElementRef;
-  private cx: CanvasRenderingContext2D;
-
-  ngAfterViewInit(): void {
-    const canvasEl: HTMLCanvasElement = this.myCanvas.nativeElement;
-    this.cx = canvasEl.getContext('2d');
-
-    for (let x = 0; x <= 300; x = x + 10) {
-      this.cx.moveTo(x, 0);
-      this.cx.lineTo(x, 300);
-    }
-
-    for (let y = 0; y <= 300; y = y + 10) {
-      this.cx.moveTo(0, y);
-      this.cx.lineTo(300, y);
-    }
-
-    this.cx.strokeStyle = '#0062cc';
-    this.cx.stroke();
-  }
-
-  ngOnInit(): void {
-  }*/
-
-  /**** CANVAS 2*****/
-
-  @ViewChild('canvas', {static: false}) canvas: ElementRef;
+  @ViewChild('canvas', { static: false }) canvas: ElementRef;
   @Input() width = 1200;
   @Input() height = 800;
 
-  private cx: CanvasRenderingContext2D;
+  iteraciones = Array(27).fill(0);
 
+  private cx: CanvasRenderingContext2D;
 
   ngAfterViewInit(): void {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
@@ -67,53 +45,52 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     this.captureEvents(canvasEl);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-// CAPTURAR LOS EVENTOS DEL MOUSE
+  // CAPTURAR LOS EVENTOS DEL MOUSE
   private captureEvents(canvasEl: HTMLCanvasElement) {
     // this will capture all mousedown events from the canvas element
     fromEvent(canvasEl, 'mousedown')
       .pipe(
-        switchMap((e) => {
+        switchMap(e => {
           // after a mouse down, we'll record all mouse moves
           // recogemos todos los movimientos del mouse
-          return fromEvent(canvasEl, 'mousemove')
-            .pipe(
-              //  unsubscribe, cuando soltamos el ratón o cuando salimos del canvas
-              takeUntil(fromEvent(canvasEl, 'mouseup')),
-              takeUntil(fromEvent(canvasEl, 'mouseleave')),
+          return fromEvent(canvasEl, 'mousemove').pipe(
+            //  unsubscribe, cuando soltamos el ratón o cuando salimos del canvas
+            takeUntil(fromEvent(canvasEl, 'mouseup')),
+            takeUntil(fromEvent(canvasEl, 'mouseleave')),
 
-              // Pairwise, nos permite obtener el punto donde soltamos el rarón para seguir dibujando
-              pairwise()
-            );
+            // Pairwise, nos permite obtener el punto donde soltamos el rarón para seguir dibujando
+            pairwise()
+          );
         })
-      ).subscribe((res: [MouseEvent, MouseEvent]) => {
+      )
+      .subscribe((res: [MouseEvent, MouseEvent]) => {
+        const rect = canvasEl.getBoundingClientRect();
+        // posicion anterior
+        console.log('RECT', rect);
+        console.log('RES CLIENT X', res[0].clientX);
+        const prevPos = {
+          x: res[0].clientX - rect.left,
+          y: res[0].clientY - rect.top
+        };
 
-      const rect = canvasEl.getBoundingClientRect();
-      // posicion anterior
-      console.log('RECT', rect);
-      console.log('RES CLIENT X', res[0].clientX);
-      const prevPos = {
-        x: res[0].clientX - rect.left,
-        y: res[0].clientY - rect.top
-      };
+        // posicion actual
+        const currentPos = {
+          x: res[1].clientX - rect.left,
+          y: res[1].clientY - rect.top
+        };
 
-      // posicion actual
-      const currentPos = {
-        x: res[1].clientX - rect.left,
-        y: res[1].clientY - rect.top
-      };
-
-      this.dranOnCanvas(prevPos, currentPos);
-    });
-
+        this.dranOnCanvas(prevPos, currentPos);
+      });
   }
 
   // DIBUJAR EN EL CANVAS
 
-  dranOnCanvas(prevPos: { x: number, y: number }, currentPos: { x: number, y: number }) {
-
+  dranOnCanvas(
+    prevPos: { x: number; y: number },
+    currentPos: { x: number; y: number }
+  ) {
     console.log('PREVPOS', prevPos);
     console.log('CURRENTPOS', currentPos);
     // En caso de que el contest no esté configurado
@@ -141,5 +118,4 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   clearCanvas(canvasEl: HTMLCanvasElement) {
     this.cx.clearRect(0, 0, canvasEl.width, canvasEl.height);
   }
-
 }

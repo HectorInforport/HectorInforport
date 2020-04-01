@@ -1,0 +1,22 @@
+<canvas #canvas> </canvas>
+
+<div
+  class="card"
+  style="width: 200px; height: 200px; float:left"
+  cdkDrag
+  *ngFor="let barco of barcos"
+>
+  <i class="fas fa-ship fa-2x text-center p-2 text-primary"></i>
+  <div class="card-body">
+    <h5 class="card-title text-center">Spartaco</h5>
+    <p class="card-text text-secondary text-center">
+      STEAM
+    </p>
+
+    <div class="container-precio-idioma mt-2">
+      <p class="badge badge-info">L: 1000m</p>
+
+      <p class="badge badge-success">W: 500m</p>
+    </div>
+  </div>
+</div>

@@ -21,13 +21,29 @@ import { MatSortModule } from '@angular/material/sort';
 import { CanvasComponent } from './canvas/canvas.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
+import { CanvasGridComponent } from './canvas-grid/canvas-grid.component';
+import { CajasComponent } from './cajas/cajas.component';
+
+// DRAG AND DROP
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DragComponent } from './drag/drag.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PaisesComponent } from './paises/paises.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BarcosComponent } from './barcos/barcos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     VesselCalendarComponent,
-    CanvasComponent
+    CanvasComponent,
+    CanvasGridComponent,
+    CajasComponent,
+    DragComponent,
+    PaisesComponent,
+    NavbarComponent,
+    BarcosComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +64,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    ScrollingModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

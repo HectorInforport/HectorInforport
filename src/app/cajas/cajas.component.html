@@ -1,0 +1,92 @@
+<!-- <div id="general">
+  <header>
+    <h1>BARCOS</h1>
+  </header>
+  <nav id="menu">
+    <ul>
+      <li><a>A</a></li>
+      <li><a>B</a></li>
+      <li><a>C</a></li>
+      <li><a>D</a></li>
+    </ul>
+  </nav>
+
+  <section id="contenido">
+    <div class="row">
+      <div class="caja" *ngFor="let caja of cajas">
+        {{ caja }}
+      </div>
+    </div>
+
+    <div class="row" style="background-color:darkmagenta; margin: 0px auto;">
+      <div class="caja" *ngFor="let caja of cajas">
+        {{ caja }}
+      </div>
+    </div>
+    <div class="row" style="background-color:blueviolet; margin: 0px auto;">
+      <div class="caja" *ngFor="let i of Arr(num).fill(1)">
+        N
+      </div>
+    </div>
+    <div class="row" style="background-color:aliceblue; margin: 0px auto;">
+      <div class="caja" *ngFor="let caja of cajas">
+        {{ caja }}
+      </div>
+    </div>
+    <div class="row" style="background-color:aquamarine; margin: 0px auto;">
+      <div class="caja" *ngFor="let caja of cajas">
+        {{ caja }}
+      </div>
+    </div>
+  </section>
+
+  <aside id="lateral">
+    <div>
+      {{ hoy | date: 'dd/MM/yyyy' }}
+    </div>
+    <div>
+      {{ tomorrow | date: 'dd/MM/yyyy' }}
+    </div>
+    <div class="caja" *ngFor="let caja of cajas">
+      {{ caja }}
+    </div>
+  </aside>
+  <div class="clearfix"></div>
+  <footer>FOOTER</footer>
+</div> -->
+
+<!-- DRAG AND DROP-->
+<h1 class="text-center">VIRTUAL SCROLL</h1>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" (click)="irFinal()">
+      Ir al final
+    </button>
+  </div>
+
+  <div class="col text-center">
+    <button class="btn btn-warning" (click)="irMitad()">
+      Ir a la Mitad
+    </button>
+  </div>
+  <div class="col text-right">
+    <button class="btn btn-secondary" (click)="irPrincipio()">
+      Ir al Inicio
+    </button>
+  </div>
+</div>
+<br />
+
+<cdk-virtual-scroll-viewport
+  itemSize="50"
+  class="list-container list-group-item"
+>
+  <div
+    class="list-group-item"
+    *cdkVirtualFor="let persona of personas; let i = index; let conteo = count"
+  >
+    Item {{ i }} / {{ conteo }}
+  </div>
+</cdk-virtual-scroll-viewport>
