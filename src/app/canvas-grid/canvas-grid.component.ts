@@ -19,7 +19,16 @@ export class CanvasGridComponent implements OnInit, AfterViewInit {
   @Input() width = 1400;
   @Input() height = 800;
   tiles_array = [];
-  barcos = Array(25).fill(0);
+  barcos = Array(10).fill(0);
+  dias: any = [
+    'LUNES',
+    'MARTES',
+    'MIERCOLES',
+    'JUEVES',
+    'VIERNES',
+    'SÁBADO',
+    'DOMINGO'
+  ];
 
   private cx: CanvasRenderingContext2D;
 
