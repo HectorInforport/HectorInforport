@@ -1,1 +1,67 @@
-<p>barcos works!</p>
+<!-- DIV CABEZERA NORAITS-->
+<div
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  class="example-list"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div class="dayShift" cdkDrag cdkDragDisabled="true">
+    DAY
+  </div>
+  <div class="dayShift" cdkDrag cdkDragDisabled="true">
+    SHIFT
+  </div>
+
+  <div
+    class="noray"
+    *ngFor="let item of items"
+    cdkDrag
+    [cdkDragDisabled]="item.disabled"
+  >
+    {{ item.value }}
+  </div>
+</div>
+<!-- FIN DIV CABEZERA NORAITS-->
+
+<div
+  cdkDropList
+  class="days-list-vertical"
+  (cdkDropListDropped)="drop($event)"
+  style="float:left;"
+>
+  <div class="days-box-vertical" *ngFor="let dia of dias">
+    {{ dia.dia }}
+  </div>
+</div>
+<div
+  cdkDropList
+  class="tramos-list-vertical"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div class="tramos-box-vertical">
+    08:00 - 14:00
+  </div>
+  <div class="tramos-box-vertical">
+    14:00 - 20:00
+  </div>
+  <div class="tramos-box-vertical">
+    20:00 - 02:00
+  </div>
+</div>
+
+<div
+  cdkDropList
+  class="tramos-list-vertical"
+  (cdkDropListDropped)="drop($event)"
+  *ngFor="let hora of horas"
+>
+  <div class="tramos-box-vertical">
+    08:00 - 14:00
+  </div>
+  <div class="tramos-box-vertical">
+    14:00 - 20:00
+  </div>
+  <div class="tramos-box-vertical">
+    20:00 - 02:00
+  </div>
+</div>

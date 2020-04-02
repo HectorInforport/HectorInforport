@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Calendar</a>
+  <a class="navbar-brand" routerLink="/">{{ app_name }}</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -14,17 +14,16 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/calendar"
+        <a class="nav-link" routerLink="/calendar"
           >Calendario <span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/vessel-calendar">Vessel</a>
+        <a class="nav-link" routerLink="/vessel-calendar">Vessel</a>
       </li>
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
-          href="#"
           id="navbarDropdownMenuLink"
           data-toggle="dropdown"
           aria-haspopup="true"
@@ -33,8 +32,8 @@
           Canvas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/canvas">Canvas</a>
-          <a class="dropdown-item" href="/grid">Grid</a>
+          <a class="dropdown-item" routerLink="/canvas">Canvas</a>
+          <a class="dropdown-item" routerLink="/grid">Grid</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -49,13 +48,13 @@
           Componentes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/cajas">Cajas</a>
-          <a class="dropdown-item" href="/drag">Drag</a>
-          <a class="dropdown-item" href="/paises">Paises</a>
+          <a class="dropdown-item" routerLink="/cajas">Cajas</a>
+          <a class="dropdown-item" routerLink="/drag">Drag</a>
+          <a class="dropdown-item" routerLink="/paises">Paises</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/barcos">Barcos</a>
+        <a class="nav-link" routerLink="/barcos">Barcos</a>
       </li>
     </ul>
   </div>
