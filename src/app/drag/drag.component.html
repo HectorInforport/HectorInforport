@@ -1,3 +1,41 @@
-<div class="caja" cdkDrag>
-  DRAG ME
+<div class="caja" cdkDrag (drag)="fireEvent($event)">
+  DRAG
 </div>
+
+<div (dragover)="fireEvent($event)">
+  DRAG OVER
+</div>
+
+<!-- <button class="btn btn-primary" id="btn" (mouseover)="fireEvent($event)">
+  Mose Over Event
+</button>
+
+<button class="btn btn-primary" id="btn" (click)="fireEvent($event)">
+  Mose Over Event
+</button>
+
+<button class="btn btn-primary" id="btn" (mousedown)="fireEvent($event)">
+  MouseDown
+</button>
+
+<button class="btn btn-primary" id="btn" (mousedown)="fireEvent($event)">
+  MouseUp
+</button>
+
+<button class="btn btn-primary" id="btn" (mousedown)="fireEvent($event)">
+  DblClick
+</button> -->
+
+<h2>Drag and Drop</h2>
+<div id="div1" (drop)="drop($event)" (dragover)="allowDrop($event)">
+  <img
+    src="https://images.pexels.com/photos/658687/pexels-photo-658687.jpeg?auto=compress&cs=tinysrgb&h=350"
+    draggable="true"
+    (dragstart)="drag($event)"
+    id="drag1"
+    width="88"
+    height="31"
+  />
+</div>
+
+<div id="div2" (drop)="drop($event)" (dragover)="allowDrop($event)"></div>

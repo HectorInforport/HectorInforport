@@ -8,6 +8,7 @@ import { CajasComponent } from './cajas/cajas.component';
 import { DragComponent } from './drag/drag.component';
 import { PaisesComponent } from './paises/paises.component';
 import { BarcosComponent } from './barcos/barcos.component';
+import { CssGridComponent } from './css-grid/css-grid.component';
 
 const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
@@ -18,12 +19,13 @@ const routes: Routes = [
   { path: 'drag', component: DragComponent },
   { path: 'paises', component: PaisesComponent },
   { path: 'barcos', component: BarcosComponent },
+  { path: 'css-grid', component: CssGridComponent },
   { path: '', redirectTo: '/drag', pathMatch: 'full' },
-  { path: '**', component: DragComponent }
+  { path: '**', component: DragComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

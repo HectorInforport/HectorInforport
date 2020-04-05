@@ -8,6 +8,8 @@ import {
   Input
 } from '@angular/core';
 
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 @Component({
   selector: 'app-canvas-grid',
   templateUrl: './canvas-grid.component.html',
@@ -29,6 +31,8 @@ export class CanvasGridComponent implements OnInit, AfterViewInit {
     'SÁBADO',
     'DOMINGO'
   ];
+
+  dragPosition = { x: -800, y: -820 };
 
   private cx: CanvasRenderingContext2D;
 

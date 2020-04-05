@@ -7,49 +7,15 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   styleUrls: ['./barcos.component.css']
 })
 export class BarcosComponent implements OnInit {
-  items = [
-    { value: '1', disabled: true },
-    { value: '2', disabled: true },
-    { value: '3', disabled: true },
-    { value: '4', disabled: true },
-    { value: '5', disabled: true },
-    { value: '6', disabled: true },
-    { value: '7', disabled: true },
-    { value: '8', disabled: true },
-    { value: '9', disabled: true },
-    { value: '10', disabled: true },
-    { value: '11', disabled: true },
-    { value: '12', disabled: true },
-    { value: '13', disabled: true },
-    { value: '14', disabled: true },
-    { value: '15', disabled: true },
-    { value: '16', disabled: true },
-    { value: '17', disabled: true },
-    { value: '18', disabled: true },
-    { value: '19', disabled: true },
-    { value: '20', disabled: true },
-    { value: '21', disabled: true },
-    { value: '22', disabled: true },
-    { value: '23', disabled: true },
-    { value: '24', disabled: true },
-    { value: '25', disabled: true },
-    { value: '26', disabled: true },
-    { value: '27', disabled: true },
-    { value: '28', disabled: true },
-    { value: '29', disabled: true },
-    { value: '30', disabled: true }
-  ];
+  // Tramos Horarios
+  horas = Array(6).fill(0);
+  // Norayts
+  norayts = Array(29).fill(0);
 
-  movies = [
-    'Lunes',
-    'Martes',
-    'Miercoles',
-    'Jueves',
-    'Viernes',
-    'Sábado',
-    'Domingo'
-  ];
-
+  // cols
+  cols = Array(29).fill(0);
+  // rows
+  rows = Array(21).fill(0);
   dias = [
     { dia: 'Lunes', number: '1' },
     { dia: 'Martes', number: '2' },
@@ -60,21 +26,68 @@ export class BarcosComponent implements OnInit {
     { dia: 'Domingo', number: '7' }
   ];
 
-  // horas = [
-  //   {
-  //     tramo1: '08:00 - 14:00',
-  //     tramo2: '14:00 - 20:00',
-  //     tramo3: '20:00 - 02:00'
-  //   }
-  // ];
+  timePeriods = [
+    'Bronze age',
+    'Iron age',
+    'Middle ages',
+    'Early modern period',
+    'Long nineteenth century'
+  ];
 
-  horas = Array(6).fill(0);
+  /** Posicion Inicial */
+  // dragPosition = { x: 225, y: -775 };
+  dragPosition = { x: 200, y: 0 };
+
+  /** Posicion Final */
+
+  // dragPosition = { x: 1000, y: -775 };
 
   constructor() {}
 
   ngOnInit() {}
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
+    console.log('DRAGANDO', event);
+    // moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
+    console.log('EVENT', event);
+    console.log('PREVIOUS', event.previousIndex);
+    console.log('CURRENT', event.currentIndex);
+    console.log('DISTANCE x', event.distance.x);
+    console.log('DISTANCE y', event.distance.y);
+    console.log(
+      'OFFSET PARENT:',
+      event.previousContainer.element.nativeElement.offsetParent
+    );
+    console.log(
+      'OFFSET PARENT:',
+      event.previousContainer.element.nativeElement.offsetTop
+    );
+    console.log(
+      'OFFSET PARENT:',
+      event.previousContainer.element.nativeElement.offsetLeft
+    );
+    console.log(
+      'OFFSET PARENT:',
+      event.previousContainer.element.nativeElement.offsetHeight
+    );
+
+    console.log(event.previousContainer.data);
+    console.log(event.container.data);
+  }
+
+  changePositionX(numero: number) {
+    this.dragPosition = {
+      x: this.dragPosition.x + numero,
+      y: this.dragPosition.y
+    };
+  }
+
+  changePositionY(numero: number) {
+    console.log((this.dragPosition.y += numero));
+    console.log(this.dragPosition);
+    this.dragPosition = {
+      x: this.dragPosition.x,
+      y: this.dragPosition.y + numero
+    };
   }
 }

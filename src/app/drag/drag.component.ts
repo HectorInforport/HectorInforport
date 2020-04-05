@@ -6,10 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drag.component.css']
 })
 export class DragComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  fireEvent(e: any) {
+    console.log(e);
   }
 
+  allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  drag(ev) {
+    ev.dataTransfer.setData('text', ev.target.id);
+  }
+
+  drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData('text');
+    ev.target.appendChild(document.getElementById(data));
+  }
 }

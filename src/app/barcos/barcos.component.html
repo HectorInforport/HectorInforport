@@ -1,67 +1,147 @@
+<!-- BUTTONS-->
+<button class="btn btn-primary p-2 m-2" (click)="changePositionX(5)">
+  +5(X)
+</button>
+<button class="btn btn-primary p-2" (click)="changePositionX(-5)">-5(X)</button>
+<button class="btn btn-primary  p-2 m-2" (click)="changePositionY(5)">
+  +5(Y)
+</button>
+<button class="btn btn-primary  p-2 m-2" (click)="changePositionY(-5)">
+  -5(Y)
+</button>
+
 <!-- DIV CABEZERA NORAITS-->
+<div class="day-shift-noray">
+  <div class="dayShift" cdkDrag cdkDragDisabled="true">
+    <span>DAY</span>
+  </div>
+  <div class="dayShift" cdkDrag cdkDragDisabled="true">
+    <span>SHIFT</span>
+  </div>
+
+  <div class="noray" *ngFor="let noray of norayts; let i = index">
+    {{ i + 1 }}
+  </div>
+</div>
+<!-- FIN DIV CABEZERA NORAITS-->
+
+<!-- DIV IZQUIERDA-->
+<aside style=" width: 20.2%; float:left">
+  <!--  DIV DIAS SEMANA-->
+  <div class="days-list-vertical">
+    <div class="days-box-vertical" *ngFor="let dia of dias">
+      {{ dia.dia }}
+    </div>
+  </div>
+  <!-- FIN DIV DIAS SEMANA-->
+
+  <!-- DIV TRAMOS HORARIOS-->
+  <div class="tramos-list-vertical">
+    <div class="tramos-box-vertical">
+      08:00 - 14:00
+    </div>
+    <div class="tramos-box-vertical">
+      14:00 - 20:00
+    </div>
+    <div class="tramos-box-vertical">
+      20:00 - 02:00
+    </div>
+  </div>
+
+  <div class="tramos-list-vertical" *ngFor="let hora of horas">
+    <div class="tramos-box-vertical">
+      08:00 - 14:00
+    </div>
+    <div class="tramos-box-vertical">
+      14:00 - 20:00
+    </div>
+    <div class="tramos-box-vertical">
+      20:00 - 02:00
+    </div>
+  </div>
+  <!-- FIN DIV TRAMOS HORARIOS-->
+</aside>
+<!-- FIN DIV IZQUIERDA-->
+
+<!-- DIV DERECHA-->
+<!-- COLUMNAS-->
+
+<div style="width: 70%;float:left">
+  <!-- BLOQUE FILAS Y COLUMNAS-->
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    *ngFor="let row of rows"
+  >
+    <!-- COLUMNAS-->
+    <div
+      class="cols-position"
+      *ngFor="let cols of cols; let i = index"
+      style="float:left"
+    ></div>
+    <!-- FIN COLUMNAS-->
+  </div>
+  <!-- FIN BLOQUE FILAS Y COLUMNAS-->
+</div>
+<!-- FIN DIV DERECHA-->
+
+<!-- BARCOS-->
+
 <div
+  class="example-box"
+  style="background-color: blue; width: 61%;"
+  cdkDrag
+  [cdkDragFreeDragPosition]="dragPosition"
+>
+  Drag me around
+</div>
+<div
+  class="example-box"
+  style="background-color: red; width: 35%;"
+  cdkDrag
+  [cdkDragFreeDragPosition]="dragPosition"
+>
+  Drag me around
+</div>
+<div
+  class="example-box"
+  style="background-color: aqua; width: 57%;"
+  cdkDrag
+  [cdkDragFreeDragPosition]="dragPosition"
+>
+  Drag me around
+</div>
+
+<!-- FIN BARCOS-->
+<!-- FIN DIV DERECHA-->
+
+<!-- DRAG ME ARROUND-->
+<div class="example-boundary-drop">
+  <div
+    class="example-box-drop"
+    cdkDragBoundary=".example-boundary-drop"
+    style="background-color: aqua; width: 57%;"
+    cdkDrag
+    (cdkDropListDropped)="drop($event)"
+    [cdkDragFreeDragPosition]="dragPosition"
+  >
+    Drag me around
+  </div>
+</div>
+
+<!-- <div
   cdkDropList
   cdkDropListOrientation="horizontal"
   class="example-list"
   (cdkDropListDropped)="drop($event)"
 >
-  <div class="dayShift" cdkDrag cdkDragDisabled="true">
-    DAY
+  <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>
+    {{ timePeriod }}
   </div>
-  <div class="dayShift" cdkDrag cdkDragDisabled="true">
-    SHIFT
-  </div>
+</div> -->
 
-  <div
-    class="noray"
-    *ngFor="let item of items"
-    cdkDrag
-    [cdkDragDisabled]="item.disabled"
-  >
-    {{ item.value }}
-  </div>
-</div>
-<!-- FIN DIV CABEZERA NORAITS-->
-
-<div
-  cdkDropList
-  class="days-list-vertical"
-  (cdkDropListDropped)="drop($event)"
-  style="float:left;"
->
-  <div class="days-box-vertical" *ngFor="let dia of dias">
-    {{ dia.dia }}
-  </div>
-</div>
-<div
-  cdkDropList
-  class="tramos-list-vertical"
-  (cdkDropListDropped)="drop($event)"
->
-  <div class="tramos-box-vertical">
-    08:00 - 14:00
-  </div>
-  <div class="tramos-box-vertical">
-    14:00 - 20:00
-  </div>
-  <div class="tramos-box-vertical">
-    20:00 - 02:00
-  </div>
-</div>
-
-<div
-  cdkDropList
-  class="tramos-list-vertical"
-  (cdkDropListDropped)="drop($event)"
-  *ngFor="let hora of horas"
->
-  <div class="tramos-box-vertical">
-    08:00 - 14:00
-  </div>
-  <div class="tramos-box-vertical">
-    14:00 - 20:00
-  </div>
-  <div class="tramos-box-vertical">
-    20:00 - 02:00
-  </div>
-</div>
+<!-- DEJAR DE FLOTAR-->
+<!-- <div class="clearfix"></div> -->
+<!-- DIV DEJAR DE FLOTAR-->

@@ -31,6 +31,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PaisesComponent } from './paises/paises.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BarcosComponent } from './barcos/barcos.component';
+import { CssGridComponent } from './css-grid/css-grid.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { BarcosComponent } from './barcos/barcos.component';
     DragComponent,
     PaisesComponent,
     NavbarComponent,
-    BarcosComponent
+    BarcosComponent,
+    CssGridComponent
   ],
   imports: [
     CommonModule,
