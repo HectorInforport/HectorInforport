@@ -32,6 +32,10 @@ import { PaisesComponent } from './paises/paises.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BarcosComponent } from './barcos/barcos.component';
 import { CssGridComponent } from './css-grid/css-grid.component';
+import { CssGridDaysComponent } from './css-grid-days/css-grid-days.component';
+
+// RESIZE
+import { AngularResizedEventModule } from 'angular-resize-event';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,8 @@ import { CssGridComponent } from './css-grid/css-grid.component';
     PaisesComponent,
     NavbarComponent,
     BarcosComponent,
-    CssGridComponent
+    CssGridComponent,
+    CssGridDaysComponent,
   ],
   imports: [
     CommonModule,
@@ -58,19 +63,20 @@ import { CssGridComponent } from './css-grid/css-grid.component';
     MatSortModule,
     MatGridListModule,
     HttpClientModule,
+    AngularResizedEventModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
-      useFactory: adapterFactory
+      useFactory: adapterFactory,
     }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
     ScrollingModule,
-    DragDropModule
+    DragDropModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

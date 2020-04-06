@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
+// Import the resized event model
+import { ResizedEvent } from 'angular-resize-event';
 @Component({
-  selector: 'app-css-grid',
-  templateUrl: './css-grid.component.html',
-  styleUrls: ['./css-grid.component.css'],
+  selector: 'app-css-grid-days',
+  templateUrl: './css-grid-days.component.html',
+  styleUrls: ['./css-grid-days.component.css'],
 })
-export class CssGridComponent implements OnInit {
-  noraits = Array(29).fill(0);
+export class CssGridDaysComponent implements OnInit {
+  meters = Array(15).fill(0);
+  today = [{ dia: 'Lunes', fecha: '06/04/2020' }];
+  width: number;
+  height: number;
+
   // days = Array(7).fill(0);
   tres = Array(3).fill(0);
 
@@ -21,6 +27,32 @@ export class CssGridComponent implements OnInit {
     'Viernes',
     'Sábado',
     'Domingo',
+  ];
+
+  hours = [
+    '00:00 - 01:00',
+    '01:00 - 02:00',
+    '02:00 - 03:00',
+    '03:00 - 04:00',
+    '04:00 - 05:00',
+    '05:00 - 06:00',
+    '06:00 - 07:00',
+    '07:00 - 08:00',
+    '08:00 - 09:00',
+    '10:00 - 11:00',
+    '11:00 - 12:00',
+    '12:00 - 13:00',
+    '13:00 - 14:00',
+    '14:00 - 15:00',
+    '15:00 - 16:00',
+    '16:00 - 17:00',
+    '17:00 - 18:00',
+    '18:00 - 19:00',
+    '19:00 - 20:00',
+    '20:00 - 21:00',
+    '21:00 - 22:00',
+    '22:00 - 23:00',
+    '23:00 - 24:00',
   ];
 
   tramos = Array(7).fill(0);
@@ -81,6 +113,7 @@ export class CssGridComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    console.log('today dia', this.today[0].dia);
     console.log(this.horaNueva.getHours());
 
     for (let i = 0; i < this.vessels.length; i++) {
@@ -114,5 +147,11 @@ export class CssGridComponent implements OnInit {
     moveItemInArray(this.vessel1, event.previousIndex, event.currentIndex);
     moveItemInArray(this.vessel2, event.previousIndex, event.currentIndex);
     moveItemInArray(this.vessel3, event.previousIndex, event.currentIndex);
+  }
+
+  onResized(event: ResizedEvent) {
+    console.log('EVENT', event);
+    this.width = event.newWidth;
+    this.height = event.newHeight;
   }
 }

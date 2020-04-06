@@ -9,6 +9,7 @@ import { DragComponent } from './drag/drag.component';
 import { PaisesComponent } from './paises/paises.component';
 import { BarcosComponent } from './barcos/barcos.component';
 import { CssGridComponent } from './css-grid/css-grid.component';
+import { CssGridDaysComponent } from './css-grid-days/css-grid-days.component';
 
 const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'paises', component: PaisesComponent },
   { path: 'barcos', component: BarcosComponent },
   { path: 'css-grid', component: CssGridComponent },
+  { path: 'css-grid-days', component: CssGridDaysComponent },
   { path: '', redirectTo: '/drag', pathMatch: 'full' },
   { path: '**', component: DragComponent },
 ];

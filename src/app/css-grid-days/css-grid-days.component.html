@@ -1,0 +1,28 @@
+<button
+  type="button"
+  class="btn btn-outline-primary m-2"
+  routerLink="/css-grid"
+>
+  Week
+</button>
+
+<div class="layout">
+  <div class="day-box text-center">DAY</div>
+  <div class="shift-box text-center">SHIFT</div>
+  <div *ngFor="let meter of meters; let i = index" class="meter-box">
+    {{ (i + 1) * 100 }}
+  </div>
+  <div class="today-box" *ngFor="let t of today">
+    {{ t.dia }}
+  </div>
+
+  <div
+    *ngFor="let hour of hours; let i = index"
+    class="hours-box-{{ i + 1 }} text-center"
+  >
+    {{ hour }}
+  </div>
+  <div (resized)="onResized($event)" style="background-color: aqua;">
+    ELEMNEN
+  </div>
+</div>

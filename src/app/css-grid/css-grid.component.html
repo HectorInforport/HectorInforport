@@ -1,3 +1,11 @@
+<button
+  type="button"
+  class="btn btn-outline-primary m-2"
+  routerLink="/css-grid-days"
+>
+  Days
+</button>
+
 <div class="layout">
   <div class="day-box text-center">DAY</div>
   <div class="shift-box text-center">SHIFT</div>
@@ -29,63 +37,165 @@
     20:00 - 02:00
   </div>
 
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-1"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div
+      class="vessel-box-{{ i + 1 }}"
+      title="{{ vessel.title }}"
+      *ngFor="let vessel of vessel1; let i = index"
+      cdkDrag
+    >
+      {{ vessel.name }}
+    </div>
+  </div>
 
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-1" (cdkDropListDropped)="drop($event)">
-<div class="vessel-box-{{i+1}}" title="{{vessel.title}}" *ngFor="let vessel of vessel1; let i = index;" cdkDrag>{{vessel.name}}</div>
-</div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-2"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div
+      class="vessel-box-{{ i + 1 }}"
+      title="{{ vessel.title }}"
+      *ngFor="let vessel of vessel2; let i = index"
+      cdkDrag
+    >
+      {{ vessel.name }}
+    </div>
+  </div>
 
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-2" (cdkDropListDropped)="drop($event)">
-<div class="vessel-box-{{i+1}}" title="{{vessel.title}}" *ngFor="let vessel of vessel2; let i = index;" cdkDrag>{{vessel.name}}</div>
-</div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-3"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div
+      class="vessel-box-{{ i + 1 }}"
+      title="{{ vessel.title }}"
+      *ngFor="let vessel of vessel3; let i = index"
+      cdkDrag
+    >
+      {{ vessel.name }}
+    </div>
+  </div>
 
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-3" (cdkDropListDropped)="drop($event)">
-<div class="vessel-box-{{i+1}}" title="{{vessel.title}}" *ngFor="let vessel of vessel3; let i = index;" cdkDrag>{{vessel.name}}</div>
-</div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-4"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-5"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-6"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
 
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-4" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-5" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-6" (cdkDropListDropped)="drop($event)">
-</div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-7"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-8"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-9"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
 
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-10"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-11"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-12"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
 
- <div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-7" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-8" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-9" (cdkDropListDropped)="drop($event)">
-</div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-13"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-14"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-15"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
 
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-16"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-17"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-18"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
 
-
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-10" (cdkDropListDropped)="drop($event)">
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-19"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-20"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="boundary-21"
+    (cdkDropListDropped)="drop($event)"
+  ></div>
 </div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-11" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-12" (cdkDropListDropped)="drop($event)">
-</div>
-
-
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-13" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-14" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-15" (cdkDropListDropped)="drop($event)">
-</div> 
-
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-16" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-17" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-18" (cdkDropListDropped)="drop($event)">
-</div> 
-
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-19" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-20" (cdkDropListDropped)="drop($event)">
-</div>
-<div cdkDropList  cdkDropListOrientation="horizontal" class="boundary-21" (cdkDropListDropped)="drop($event)">
-</div> 
-
-
