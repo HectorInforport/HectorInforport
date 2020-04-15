@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  HostListener,
+} from '@angular/core';
 
 // Import Cdk Drag & Drop
 import {
@@ -44,10 +50,10 @@ export class CssGridDaysComponent implements OnInit {
   today = [{ dia: 'Monday', fecha: '06/04/2020' }];
 
   // Testing
-  width: any = 100;
-  height: any = 50;
-  width2: any = 100;
-  height2: any = 300;
+  // width: any = 100;
+  // height: any = 50;
+  // width2: any = 100;
+  // height2: any = 300;
   horaNueva = new Date();
   timePeriods = ['BRA', 'IRA', 'MIA', 'EMP', 'LNC'];
 
@@ -55,7 +61,66 @@ export class CssGridDaysComponent implements OnInit {
   hours = HOURS;
   vessels = VESSELS;
 
-  constructor() {}
+  // Drag & Resize Elements
+  x: number;
+  y: number;
+  px: number;
+  py: number;
+  width: number;
+  height: number;
+  minArea: number;
+  draggingCorner: boolean;
+  draggingWindow: boolean;
+  resizer: any;
+
+  // Connecting sorting
+  todo = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+  ];
+
+  done = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+  ];
+
+  constructor() {
+    this.x = 480;
+    this.y = 233;
+    this.px = 0;
+    this.py = 0;
+    this.width = 63;
+    this.height = 37;
+    this.draggingCorner = false;
+    this.draggingWindow = false;
+    this.minArea = 20000;
+  }
 
   ngOnInit() {
     // console.log('today dia', this.today[0].dia);
@@ -89,10 +154,30 @@ export class CssGridDaysComponent implements OnInit {
     }); */
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    console.log('DROP', event);
-    // moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-  }
+  // drop(event: CdkDragDrop<string[]>) {
+  //   console.log('DROP', event);
+  //   // moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  // }
+
+  // DRAG & DROP CONNECTING SORTING
+  // drop(event: CdkDragDrop<string[]>) {
+  //   console.log(event);
+
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex
+  //     );
+  //   } else {
+  //     transferArrayItem(
+  //       event.previousContainer.data,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex
+  //     );
+  //   }
+  // }
 
   newDiv() {
     const nuevo = {
@@ -185,5 +270,94 @@ export class CssGridDaysComponent implements OnInit {
     } else {
       this.vessels[position].width = 930;
     }
+  }
+
+  /** Drag & Resize elements */
+  area() {
+    return this.width * this.height;
+  }
+
+  onWindowPress(event: MouseEvent) {
+    console.log('onWindowPress', event);
+    this.draggingWindow = true;
+    this.px = event.clientX;
+    this.py = event.clientY;
+  }
+
+  onWindowDrag(event: MouseEvent) {
+    // console.log('onWindowDrag', event);
+    if (!this.draggingWindow) {
+      return;
+    }
+    let offsetX = event.clientX - this.px;
+    let offsetY = event.clientY - this.py;
+
+    this.x += offsetX;
+    this.y += offsetY;
+    this.px = event.clientX;
+    this.py = event.clientY;
+  }
+
+  topLeftResize(offsetX: number, offsetY: number) {
+    this.x += offsetX;
+    this.y += offsetY;
+    this.width -= offsetX;
+    this.height -= offsetY;
+  }
+
+  topRightResize(offsetX: number, offsetY: number) {
+    this.y += offsetY;
+    this.width += offsetX;
+    this.height -= offsetY;
+  }
+
+  bottomLeftResize(offsetX: number, offsetY: number) {
+    this.x += offsetX;
+    this.width -= offsetX;
+    this.height += offsetY;
+  }
+
+  bottomRightResize(offsetX: number, offsetY: number) {
+    this.width += offsetX;
+    this.height += offsetY;
+  }
+
+  onCornerClick(event: MouseEvent, resizer?: Function) {
+    this.draggingCorner = true;
+    this.px = event.clientX;
+    this.py = event.clientY;
+    this.resizer = resizer;
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onCornerMove(event: MouseEvent) {
+    if (!this.draggingCorner) {
+      return;
+    }
+    let offsetX = event.clientX - this.px;
+    let offsetY = event.clientY - this.py;
+
+    let lastX = this.x;
+    let lastY = this.y;
+    let pWidth = this.width;
+    let pHeight = this.height;
+
+    this.resizer(offsetX, offsetY);
+    if (this.area() < this.minArea) {
+      this.x = lastX;
+      this.y = lastY;
+      this.width = pWidth;
+      this.height = pHeight;
+    }
+    this.px = event.clientX;
+    this.py = event.clientY;
+  }
+
+  @HostListener('document:mouseup', ['$event'])
+  onCornerRelease(event: MouseEvent) {
+    this.draggingWindow = false;
+    this.draggingCorner = false;
   }
 }

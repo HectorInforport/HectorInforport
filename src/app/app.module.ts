@@ -46,6 +46,8 @@ import {
   MatDialogModule,
   MatDividerModule,
 } from '@angular/material';
+import { ColRowComponent } from './vessel-component/col-row/col-row.component';
+import { DragDropResizeComponent } from './vessel-component/drag-drop-resize/drag-drop-resize.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import {
     CssGridDaysComponent,
     ResizeElementComponent,
     ModalComponent,
+    ColRowComponent,
+    DragDropResizeComponent,
   ],
   imports: [
     CommonModule,

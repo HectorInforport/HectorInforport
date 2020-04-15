@@ -27,24 +27,57 @@
     {{ hour }}
   </div>
 
-  <div *ngFor="let c of container; let i = index" cdkDrag>
-    {{ i + 1 }}
-  </div>
+  <!-- contenedor-->
+  <div id="container" *ngFor="let c of container; let i = index" cdkDrag></div>
+  <!-- fin contenedor-->
+  <div
+    style="
+      background-color: red;
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 3;
+      grid-column-end: 18;
+    "
+  ></div>
 
-  <!-- <div class="viewport" cdkDrop>
-    <div
-      #item
-      class="item"
-      cdkDrag
-      (cdkDragEnded)="dragEnd($event)"
-      [style.top.px]="initialPosition.y"
-      [style.left.px]="initialPosition.x"
-    >
-      anything
-    </div>
-  </div> -->
+  <div
+    style="
+      background-color: green;
+      grid-row-start: 3;
+      grid-row-end: 4;
+      grid-column-start: 3;
+      grid-column-end: 6;
+    "
+  ></div>
 
-  <div class="example-boundary-hector">
+  <div
+    style="
+      background-color: blue;
+      grid-row-start: 5;
+      grid-row-end: 6;
+      grid-column-start: 5;
+      grid-column-end: 9;
+    "
+  ></div>
+
+  <div
+    style="
+      background-color: pink;
+      grid-row-start: 9;
+      grid-row-end: 15;
+      grid-column-start: 3;
+      grid-column-end: 8;
+    "
+  ></div>
+</div>
+
+<!-- contenedor-->
+<!-- <div id="container" *ngFor="let c of container; let i = index" cdkDrag></div> -->
+<!-- fin contenedor-->
+
+<!-- PANEL DRAG AND DROP-->
+
+<!-- <div class="example-boundary-hector">
     <div
       class="example-box"
       id="hector-{{ i + 1 }}"
@@ -82,13 +115,24 @@
           bg-white
         ></i>
       </p>
-
-      <!-- [style.positionX.px]="vessel.offsetTop"
-      [style.positionY.px]="vessel.offsetLeft" -->
-      <!-- [cdkDragFreeDragPosition]="vessel.dragPosition" -->
     </div>
+  </div> -->
+
+<!-- DRAG ITEM-->
+
+<!-- <div class="viewport" cdkDrop>
+  <div
+    style="background-color: red;"
+    #item
+    class="item"
+    cdkDrag
+    (cdkDragEnded)="dragEnd($event)"
+    [style.top.px]="initialPosition.y"
+    [style.left.px]="initialPosition.x"
+  >
+    anything
   </div>
-</div>
+</div> -->
 
 <!--- FUERA DEL LAYOUT-->
 <!-- <div class="layout2 mt-5">
@@ -150,3 +194,75 @@
     anything
   </div>
 </div> -->
+
+<!-- DRAG & DROP & RESIZE ELEMENTS-->
+<!-- <div
+  id="chat"
+  [style.top.px]="y"
+  [style.left.px]="x"
+  [style.width.px]="width"
+  [style.height.px]="height"
+  (mousedown)="onWindowPress($event)"
+  (mousemove)="onWindowDrag($event)"
+>
+  <div
+    (mousedown)="onCornerClick($event, topLeftResize)"
+    id="chat-top-left-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, topRightResize)"
+    id="chat-top-right-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, bottomLeftResize)"
+    id="chat-bottom-left-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, bottomRightResize)"
+    id="chat-bottom-right-resize"
+    class="chat-corner-resize"
+  ></div>
+</div> -->
+
+<!-- DRAG & DROP CONNECTING SORTING-->
+
+<!-- <div
+    class="container-drag-drop"
+    style="grid-column: 3/18; grid-row: 2/25; background-color: salmon;"
+  >
+    <div
+      class="example-list-h"
+      style="grid-row: 2/3; grid-column: 3/18; background-color: yellow;"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div *ngFor="let item of todo" cdkDrag class="example-box-h">
+        {{ item }}
+      </div>
+    </div>
+
+    <div
+      class="example-list-h"
+      style="grid-row: 2/3; grid-column: 3/18; background-color: yellow;"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[todoList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div *ngFor="let item of done" cdkDrag class="example-box-h">
+        {{ item }}
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- END  DRAG & DROP CONNECTING SORTING -->

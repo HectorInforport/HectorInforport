@@ -1,0 +1,211 @@
+:root {
+  --amarillo: yellow;
+  --blue: #007bff;
+  max-width: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 5fr 5fr repeat(15, 3fr);
+  grid-template-rows: 3fr repeat(23, 0.5fr);
+}
+
+#container {
+  border: 1px dashed #ccc;
+}
+
+.shift-box {
+  background-color: var(--blue);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  line-height: 90px;
+  padding: 15px 0px 15px 0px;
+}
+
+.day-box {
+  background-color: var(--blue);
+  color: white;
+  text-align: center;
+  line-height: 90px;
+  font-weight: bold;
+  padding: 15px 0px 15px 0px;
+  border-right: 1px solid white;
+}
+
+.meter-box {
+  background-color: var(--blue);
+  padding: 15px 0px 15px 0px;
+  text-align: center;
+  line-height: 90px;
+  font-weight: bold;
+  color: white;
+  border-left: 1px solid white;
+  margin-bottom: 0px;
+}
+
+/** TODAY BOX **/
+
+.today-box {
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--blue);
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  grid-row: 2/25;
+}
+
+/** TRAMO DE HORAS **/
+.hours-box-1,
+.hours-box-2,
+.hours-box-3,
+.hours-box-4,
+.hours-box-5,
+.hours-box-6,
+.hours-box-7,
+.hours-box-8,
+.hours-box-9,
+.hours-box-10,
+.hours-box-11,
+.hours-box-12,
+.hours-box-13,
+.hours-box-14,
+.hours-box-15,
+.hours-box-16,
+.hours-box-17,
+.hours-box-18,
+.hours-box-19,
+.hours-box-20,
+.hours-box-21,
+.hours-box-22,
+.hours-box-23 {
+  background-color: white;
+  text-align: center;
+  color: var(--blue);
+  font-weight: bold;
+  line-height: 35px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.hours-box-1 {
+  grid-row: 2/3;
+  border-top: 1px solid #ccc;
+}
+
+.hours-box-2 {
+  grid-row: 3/4;
+}
+.hours-box-3 {
+  grid-row: 4/5;
+}
+.hours-box-4 {
+  grid-row: 5/6;
+}
+.hours-box-5 {
+  grid-row: 6/7;
+}
+.hours-box-6 {
+  grid-row: 7/8;
+}
+.hours-box-7 {
+  grid-row: 8/9;
+}
+.hours-box-8 {
+  grid-row: 9/10;
+}
+.hours-box-9 {
+  grid-row: 10/11;
+}
+.hours-box-10 {
+  grid-row: 11/12;
+}
+.hours-box-11 {
+  grid-row: 12/13;
+}
+.hours-box-12 {
+  grid-row: 13/14;
+}
+.hours-box-13 {
+  grid-row: 14/15;
+}
+.hours-box-14 {
+  grid-row: 15/16;
+}
+.hours-box-15 {
+  grid-row: 16/17;
+}
+.hours-box-16 {
+  grid-row: 17/18;
+}
+.hours-box-17 {
+  grid-row: 18/19;
+}
+.hours-box-18 {
+  grid-row: 19/20;
+}
+.hours-box-19 {
+  grid-row: 20/21;
+}
+.hours-box-20 {
+  grid-row: 21/22;
+}
+.hours-box-21 {
+  grid-row: 22/23;
+}
+.hours-box-22 {
+  grid-row: 23/24;
+}
+
+.hours-box-23 {
+  grid-row: 24/25;
+}
+
+.example-box {
+  width: 200px;
+  height: 200px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  margin-right: 25px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.example-boundary-hector {
+  grid-column: 3/18;
+  grid-row: 2/25;
+  background-color: #c2ecfc;
+  max-width: 100%;
+  border: dotted #ccc 2px;
+}

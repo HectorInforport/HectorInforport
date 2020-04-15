@@ -1,0 +1,66 @@
+<button class="btn btn-primary m-2" (click)="newDiv()">
+  <i class="fas fa-plus-circle bg-primary"></i> New Vessel
+</button>
+
+<div class="layout">
+  <div class="day-box text-center">DAY</div>
+  <div class="shift-box text-center">SHIFT</div>
+  <div *ngFor="let meter of meters; let i = index" class="meter-box">
+    {{ (i + 1) * 100 }}
+  </div>
+  <div class="today-box" *ngFor="let t of today">
+    {{ t.dia }}
+  </div>
+
+  <div
+    *ngFor="let hour of hours; let i = index"
+    class="hours-box-{{ i + 1 }} text-center"
+  >
+    {{ hour }}
+  </div>
+
+  <!-- contenedor-->
+  <div id="container" *ngFor="let c of container; let i = index" cdkDrag></div>
+  <!-- fin contenedor-->
+
+  <div
+    title="hola que ases"
+    style="
+      background-color: red;
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 3;
+      grid-column-end: 18;
+    "
+  ></div>
+
+  <div
+    style="
+      background-color: green;
+      grid-row-start: 3;
+      grid-row-end: 4;
+      grid-column-start: 3;
+      grid-column-end: 6;
+    "
+  ></div>
+
+  <div
+    style="
+      background-color: blue;
+      grid-row-start: 5;
+      grid-row-end: 6;
+      grid-column-start: 5;
+      grid-column-end: 9;
+    "
+  ></div>
+
+  <div
+    style="
+      background-color: pink;
+      grid-row-start: 9;
+      grid-row-end: 15;
+      grid-column-start: 3;
+      grid-column-end: 8;
+    "
+  ></div>
+</div>
