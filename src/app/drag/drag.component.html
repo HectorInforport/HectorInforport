@@ -1,10 +1,10 @@
-<div class="caja" cdkDrag (drag)="fireEvent($event)">
+<!-- <div class="caja" cdkDrag (drag)="fireEvent($event)">
   DRAG
 </div>
 
 <div (dragover)="fireEvent($event)">
   DRAG OVER
-</div>
+</div> -->
 
 <!-- <button class="btn btn-primary" id="btn" (mouseover)="fireEvent($event)">
   Mose Over Event
@@ -26,7 +26,7 @@
   DblClick
 </button> -->
 
-<h2>Drag and Drop</h2>
+<!-- <h2>Drag and Drop</h2>
 <div id="div1" (drop)="drop($event)" (dragover)="allowDrop($event)">
   <img
     src="https://images.pexels.com/photos/658687/pexels-photo-658687.jpeg?auto=compress&cs=tinysrgb&h=350"
@@ -38,4 +38,33 @@
   />
 </div>
 
-<div id="div2" (drop)="drop($event)" (dragover)="allowDrop($event)"></div>
+<div id="div2" (drop)="drop($event)" (dragover)="allowDrop($event)"></div> -->
+
+<div class="cointaner-fluid m-5">
+  <div class="row p-2 justify-content-between" style="border: 1px solid black;">
+    <div
+      class="col offset-1 d-sm-none"
+      style="
+        background-color: red;
+        border: 1px solid #ccc;
+        height: 200px;
+        width: 200px;
+      "
+    >
+      1
+    </div>
+    <div
+      class="col offset-1"
+      style="background-color: green; border: 1px solid #ccc;"
+    >
+      2
+    </div>
+
+    <div
+      class="col offset-1"
+      style="background-color: yellow; border: 1px solid #ccc;"
+    >
+      3
+    </div>
+  </div>
+</div>

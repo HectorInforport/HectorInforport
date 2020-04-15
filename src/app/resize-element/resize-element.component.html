@@ -1,0 +1,61 @@
+<div
+  id="chat"
+  [style.top.px]="y"
+  [style.left.px]="x"
+  [style.width.px]="width"
+  [style.height.px]="height"
+  (mousedown)="onWindowPress($event)"
+  (mousemove)="onWindowDrag($event)"
+>
+  <div
+    (mousedown)="onCornerClick($event, topLeftResize)"
+    id="chat-top-left-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, topRightResize)"
+    id="chat-top-right-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, bottomLeftResize)"
+    id="chat-bottom-left-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, bottomRightResize)"
+    id="chat-bottom-right-resize"
+    class="chat-corner-resize"
+  ></div>
+</div>
+<div
+  style="background-color: red;"
+  id="chat2"
+  [style.top.px]="y2"
+  [style.left.px]="x2"
+  [style.width.px]="width2"
+  [style.height.px]="height2"
+  (mousedown)="onWindowPress($event)"
+  (mousemove)="onWindowDrag($event)"
+>
+  <div
+    (mousedown)="onCornerClick($event, topLeftResize)"
+    id="chat-top-left-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, topRightResize)"
+    id="chat-top-right-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, bottomLeftResize)"
+    id="chat-bottom-left-resize"
+    class="chat-corner-resize"
+  ></div>
+  <div
+    (mousedown)="onCornerClick($event, bottomRightResize)"
+    id="chat-bottom-right-resize"
+    class="chat-corner-resize"
+  ></div>
+</div>

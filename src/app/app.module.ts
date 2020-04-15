@@ -36,6 +36,16 @@ import { CssGridDaysComponent } from './css-grid-days/css-grid-days.component';
 
 // RESIZE
 import { AngularResizedEventModule } from 'angular-resize-event';
+import { ResizableModule } from 'angular-resizable-element';
+import { ResizeElementComponent } from './resize-element/resize-element.component';
+import { ModalComponent } from './resize-element/modal/modal.component';
+
+// ANGULAR MATERIAL
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatDividerModule,
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -51,6 +61,8 @@ import { AngularResizedEventModule } from 'angular-resize-event';
     BarcosComponent,
     CssGridComponent,
     CssGridDaysComponent,
+    ResizeElementComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -61,8 +73,12 @@ import { AngularResizedEventModule } from 'angular-resize-event';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    ResizableModule,
     MatGridListModule,
     HttpClientModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatDividerModule,
     AngularResizedEventModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

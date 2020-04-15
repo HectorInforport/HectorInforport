@@ -10,6 +10,7 @@ import { PaisesComponent } from './paises/paises.component';
 import { BarcosComponent } from './barcos/barcos.component';
 import { CssGridComponent } from './css-grid/css-grid.component';
 import { CssGridDaysComponent } from './css-grid-days/css-grid-days.component';
+import { ResizeElementComponent } from './resize-element/resize-element.component';
 
 const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'barcos', component: BarcosComponent },
   { path: 'css-grid', component: CssGridComponent },
   { path: 'css-grid-days', component: CssGridDaysComponent },
+  { path: 'resize', component: ResizeElementComponent },
   { path: '', redirectTo: '/drag', pathMatch: 'full' },
   { path: '**', component: DragComponent },
 ];

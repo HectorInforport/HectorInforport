@@ -6,6 +6,10 @@
   Week
 </button>
 
+<button class="btn btn-primary m-2" (click)="newDiv()">
+  <i class="fas fa-plus-circle bg-primary"></i> New Vessel
+</button>
+
 <div class="layout">
   <div class="day-box text-center">DAY</div>
   <div class="shift-box text-center">SHIFT</div>
@@ -22,7 +26,127 @@
   >
     {{ hour }}
   </div>
-  <div (resized)="onResized($event)" style="background-color: aqua;">
-    ELEMNEN
+
+  <div *ngFor="let c of container; let i = index" cdkDrag>
+    {{ i + 1 }}
+  </div>
+
+  <!-- <div class="viewport" cdkDrop>
+    <div
+      #item
+      class="item"
+      cdkDrag
+      (cdkDragEnded)="dragEnd($event)"
+      [style.top.px]="initialPosition.y"
+      [style.left.px]="initialPosition.x"
+    >
+      anything
+    </div>
+  </div> -->
+
+  <div class="example-boundary-hector">
+    <div
+      class="example-box"
+      id="hector-{{ i + 1 }}"
+      cdkDragBoundary=".example-boundary-hector"
+      cdkDrag
+      title="{{ vessel.title }}"
+      *ngFor="let vessel of vessels; let i = index"
+      [ngStyle]="{ 'background-color': vessel.color }"
+      [cdkDragFreeDragPosition]="vessel.dragPosition"
+      [style.width.px]="vessel.width"
+      [style.height.px]="vessel.heigth"
+      (cdkDragEnded)="dragEnd($event, i)"
+    >
+      {{ vessel.name }}
+      <p class="badge badge-info mr-2">
+        <i
+          class="fas fa-arrow-alt-circle-left pr-2"
+          (click)="plusWidth(i, $event)"
+        ></i>
+        <i
+          class="fas fa-arrow-alt-circle-right"
+          (click)="minusWidth(i, $event)"
+        ></i>
+      </p>
+
+      <p class="badge badge-primary">
+        <i
+          class="fas fa-arrow-alt-circle-up mr-2"
+          (click)="plusHeight(i, $event)"
+          bg-white
+        ></i>
+        <i
+          class="fas fa-arrow-alt-circle-down"
+          (click)="minisHeight(i, $event)"
+          bg-white
+        ></i>
+      </p>
+
+      <!-- [style.positionX.px]="vessel.offsetTop"
+      [style.positionY.px]="vessel.offsetLeft" -->
+      <!-- [cdkDragFreeDragPosition]="vessel.dragPosition" -->
+    </div>
   </div>
 </div>
+
+<!--- FUERA DEL LAYOUT-->
+<!-- <div class="layout2 mt-5">
+  <div
+    class="example-box"
+    cdkDrag
+    [cdkDragFreeDragPosition]="vessel.dragPosition"
+    (cdkDragEnded)="dragEnd($event)"
+    (click)="changePosition(i)"
+    style="
+      background-color: blue;
+      color: white;
+
+      grid-column: 18;
+    "
+    *ngFor="let vessel of vessels; let i = index"
+    [ngStyle]="{ 'background-color': vessel.color }"
+    [style.width.px]="vessel.width"
+    [style.height.px]="vessel.heigth"
+  >
+    {{ vessel.name }}
+  </div>
+</div> -->
+
+<!-- <div class="parent"> -->
+<!-- <span
+    id="draggableSpan"
+    draggable="true"
+    style="background-color: blue;"
+    (ondragstart)="onDragStart($event)"
+  >
+    draggable
+  </span>
+  <span style="background-color: green;"> dropzone </span>
+</div>
+-->
+<!-- <div
+  mwlResizable
+  [enableGhostResize]="true"
+  [resizeEdges]="{ bottom: true, right: true, top: true, left: true }"
+  (resized)="onResized($event)"
+  style="background-color: aqua;"
+  draggable="true"
+>
+  ELEMNEN
+</div> -->
+<!-- [cdkDragFreeDragPosition]="vessel.dragPosition" -->
+<!-- (click)="changePosition(i)" -->
+<!-- 
+<div class="viewport" cdkDrop>
+  <div
+    #item
+    class="item"
+    cdkDrag
+    (cdkDragEnded)="dragEnd($event)"
+    [style.top.px]="initialPosition.y"
+    [style.left.px]="initialPosition.x"
+  >
+    anything
+  </div>
+</div> -->

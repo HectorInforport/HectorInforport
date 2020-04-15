@@ -1,157 +1,189 @@
-import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
+// Import Cdk Drag & Drop
+import {
+  CdkDragDrop,
+  CdkDragEnd,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 // Import the resized event model
-import { ResizedEvent } from 'angular-resize-event';
+import { ResizeEvent } from 'angular-resizable-element';
+import { ResizableModule } from 'angular-resizable-element';
+
+// Import RXJS
+import { fromEvent } from 'rxjs';
+import { mapTo, map, filter, tap } from 'rxjs/operators';
+
+// Import constants
+import { HOURS } from '../utils/hours';
+import { VESSELS } from '../utils/vessels';
+
 @Component({
   selector: 'app-css-grid-days',
   templateUrl: './css-grid-days.component.html',
   styleUrls: ['./css-grid-days.component.css'],
 })
 export class CssGridDaysComponent implements OnInit {
+  @ViewChild('item', { static: true }) item: ElementRef;
+
+  initialPosition = { x: 100, y: 100 };
+  position = { ...this.initialPosition };
+  offset = { x: 0, y: 0 };
+
+  dragPosition = { x: 0, y: 0 };
+
+  // GRID STRUCTURE
   meters = Array(15).fill(0);
-  today = [{ dia: 'Lunes', fecha: '06/04/2020' }];
-  width: number;
-  height: number;
-
-  // days = Array(7).fill(0);
   tres = Array(3).fill(0);
-
-  horaNueva = new Date();
-
-  days = [
-    'Lunes',
-    'Martes',
-    'Miercoles',
-    'Jueves',
-    'Viernes',
-    'Sábado',
-    'Domingo',
-  ];
-
-  hours = [
-    '00:00 - 01:00',
-    '01:00 - 02:00',
-    '02:00 - 03:00',
-    '03:00 - 04:00',
-    '04:00 - 05:00',
-    '05:00 - 06:00',
-    '06:00 - 07:00',
-    '07:00 - 08:00',
-    '08:00 - 09:00',
-    '10:00 - 11:00',
-    '11:00 - 12:00',
-    '12:00 - 13:00',
-    '13:00 - 14:00',
-    '14:00 - 15:00',
-    '15:00 - 16:00',
-    '16:00 - 17:00',
-    '17:00 - 18:00',
-    '18:00 - 19:00',
-    '19:00 - 20:00',
-    '20:00 - 21:00',
-    '21:00 - 22:00',
-    '22:00 - 23:00',
-    '23:00 - 24:00',
-  ];
-
+  container = Array(345).fill(0);
+  dayContainer = Array(23).fill(0);
   tramos = Array(7).fill(0);
+
+  today = [{ dia: 'Monday', fecha: '06/04/2020' }];
+
+  // Testing
+  width: any = 100;
+  height: any = 50;
+  width2: any = 100;
+  height2: any = 300;
+  horaNueva = new Date();
   timePeriods = ['BRA', 'IRA', 'MIA', 'EMP', 'LNC'];
 
-  vessels = [
-    {
-      name: 'BRA',
-      day: 1,
-      title: 'BRA GERMANY',
-      start: 8,
-      end: 14,
-      size: 1000,
-      orientation: 'izq',
-    },
-    {
-      name: 'IRA',
-      day: 1,
-      title: 'IRA GERMANY',
-      start: 14,
-      end: 20,
-      size: 1000,
-      orientation: 'izq',
-    },
-    {
-      name: 'EMP',
-      day: 1,
-      title: 'EMP GERMANY',
-      start: 20,
-      end: 23,
-      size: 1000,
-      orientation: 'izq',
-    },
-    {
-      name: 'MIA',
-      day: 1,
-      title: 'MIA GERMANY',
-      start: 20,
-      end: 23,
-      size: 1000,
-      orientation: 'izq',
-    },
-    {
-      name: 'MIA2',
-      day: 1,
-      title: 'MIA GERMANY',
-      start: 8,
-      end: 23,
-      size: 1000,
-      orientation: 'izq',
-    },
-  ];
-
-  vessel1 = [];
-  vessel2 = [];
-  vessel3 = [];
+  // Import Constants
+  hours = HOURS;
+  vessels = VESSELS;
 
   constructor() {}
 
   ngOnInit() {
-    console.log('today dia', this.today[0].dia);
-    console.log(this.horaNueva.getHours());
-
-    for (let i = 0; i < this.vessels.length; i++) {
-      console.log('ENTRANDO AL FOR');
-
-      if (this.vessels[i].start >= 8 && this.vessels[i].end <= 23) {
-        if (this.vessels[i].start >= 8 && this.vessels[i].end <= 20) {
-          if (this.vessels[i].start === 14 && this.vessels[i].end === 20) {
-            this.vessel2.push(this.vessels[i]);
-          }
-
-          if (this.vessels[i].start >= 8 && this.vessels[i].end <= 14) {
-            // console.log(this.vessels[i].name);
-            this.vessel1.push(this.vessels[i]);
-          }
-        } else {
-          this.vessel3.push(this.vessels[i]);
-        }
-      }
-
-      if (this.vessels[i].start === 8 && this.vessels[i].end === 23) {
-        this.vessel1.push(this.vessels[i]);
-        this.vessel2.push(this.vessels[i]);
-      }
-    }
+    // console.log('today dia', this.today[0].dia);
+    // console.log(this.horaNueva.getHours());
+    //  FOR LOOP
+    /*     for (let i = 0; i < this.vessels.length; i++) {
+    for (let vessel of this.vessels) {
+      console.log(vessel.name);
+    } */
+    // EVENT ACTIONS
+    // Click Event with ID
+    /*     const actionBtn = document.getElementById('hector-1');
+    const source = fromEvent(actionBtn, 'click');
+    source.subscribe((evt: any) => {
+      window.alert('hi!');
+      console.log('evento', evt);
+      console.log('evento', evt.clientX);
+    });
+ */
+    // Click Event
+    /*    fromEvent(document, 'click').subscribe((evt: any) => {
+      window.alert('hi!' + evt.target.title + evt.target.id);
+      console.log('click', evt);
+      console.log(evt.x, evt.y);
+    });
+ */
+    // DRAG EVENT ( drag, drop & dragenter)
+    /*   fromEvent(document, 'drag').subscribe((evt: any) => {
+      console.log('DRAG');
+      console.log(evt.x, evt.y);
+    }); */
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log('EVENT', event);
-    moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
-    moveItemInArray(this.vessel1, event.previousIndex, event.currentIndex);
-    moveItemInArray(this.vessel2, event.previousIndex, event.currentIndex);
-    moveItemInArray(this.vessel3, event.previousIndex, event.currentIndex);
+    console.log('DROP', event);
+    // moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
 
-  onResized(event: ResizedEvent) {
-    console.log('EVENT', event);
-    this.width = event.newWidth;
-    this.height = event.newHeight;
+  newDiv() {
+    const nuevo = {
+      name: 'NEW',
+      day: 1,
+      title: 'NEW',
+      start: 20,
+      end: 23,
+      size: 1000,
+      orientation: 'undefined',
+      width: 65,
+      heigth: 60,
+      color: 'purple',
+      dragPosition: { x: 317, y: 239 },
+      offsetTop: 0,
+      offsetLeft: 0,
+    };
+    this.vessels.push(nuevo);
+  }
+
+  changePosition(position: any) {
+    const numero = Math.random() * 20;
+    console.log('numero', numero);
+
+    console.log('disparando change position');
+    console.log(this.vessels[position].dragPosition);
+    this.vessels[position].dragPosition = {
+      x: this.vessels[position].dragPosition.x + numero,
+      y: this.vessels[position].dragPosition.y + numero,
+    };
+  }
+
+  dragEnd(event: CdkDragEnd, position: any) {
+    this.offset = { ...(event.source._dragRef as any)._passiveTransform };
+
+    this.position.x = this.initialPosition.x + this.offset.x;
+    this.position.y = this.initialPosition.y + this.offset.y;
+
+    console.log(this.position, this.initialPosition, this.offset);
+    this.vessels[position].dragPosition.x = this.position.x;
+    this.vessels[position].dragPosition.y = this.position.y;
+  }
+
+  onDragStart(event) {
+    // console.log(event);
+    console.log('EVENTOOOOO');
+    event.dataTransfer.setData('text/plain', event.target.id);
+    event.currentTarget.style.backgroundCOlor = 'yellow';
+  }
+
+  dameDatos(position: any) {
+    console.log('DAME DATOS');
+    console.log('antes', this.vessels[position].offsetTop);
+    console.log('antes', this.vessels[position].offsetLeft);
+  }
+
+  onResizeEnd(event: ResizeEvent): void {
+    console.log('Element was resized', event);
+    // this.height = event.rectangle.height;
+    this.height = event.rectangle.height;
+    this.width = event.rectangle.width;
+  }
+  plusHeight(position: any, event?: any) {
+    if (this.vessels[position].heigth < 780) {
+      this.vessels[position].heigth += 36;
+    } else {
+      this.vessels[position].heigth = 790;
+    }
+  }
+
+  minisHeight(position: any, event?: any) {
+    if (this.vessels[position].heigth > 36) {
+      this.vessels[position].heigth -= 36;
+    } else {
+      this.vessels[position].heigth = 36;
+    }
+  }
+
+  minusWidth(position: any, event?: any) {
+    if (this.vessels[position].width > 65) {
+      this.vessels[position].width -= 65;
+    } else {
+      this.vessels[position].width = 65;
+    }
+  }
+
+  plusWidth(position: any, event?: any) {
+    if (this.vessels[position].width < 890) {
+      this.vessels[position].width += 65;
+    } else {
+      this.vessels[position].width = 930;
+    }
   }
 }

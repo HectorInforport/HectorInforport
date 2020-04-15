@@ -1,6 +1,7 @@
 :root {
   --amarillo: yellow;
   --blue: #007bff;
+  max-width: 100%;
 }
 
 body {
@@ -13,6 +14,18 @@ body {
   display: grid;
   grid-template-columns: 5fr 5fr repeat(15, 3fr);
   grid-template-rows: 3fr repeat(23, 0.5fr);
+}
+
+.layout2 {
+  /* border: 1px solid #ccc; */
+  border: 1px solid var(--blue);
+  border-radius: 5px;
+  display: flex;
+}
+
+#hector {
+  display: flex;
+  flex-direction: column;
 }
 
 .shift-box {
@@ -44,6 +57,13 @@ body {
   border-left: 1px solid white;
   margin-bottom: 0px;
 }
+
+/** RESIZE ELEMENT'S **/
+mwlResizable {
+  box-sizing: border-box;
+}
+
+/** FIN RESIZE ELEMENT'S **/
 
 /** TODAY BOX **/
 
@@ -269,7 +289,7 @@ body {
 .boundary-19,
 .boundary-20,
 .boundary-21 {
-  grid-column: 3/32;
+  grid-column: 3/22;
   max-width: 100%;
   border: dotted #ccc 2px;
 }
@@ -344,4 +364,181 @@ body {
 }
 .boundary-21 {
   grid-row: 22;
+}
+
+/*** LISTA COMPARTIDA DRAG & DROP **/
+
+/* .contenedor {
+  grid-column: 3/10;
+  grid-row: 2/25;
+  background-color: aquamarine;
+} */
+.example-container {
+  width: 400px;
+  max-width: 50%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.example-container-1 {
+  grid-row: 3/22;
+  grid-column: 3/6;
+  background-color: aquamarine;
+}
+
+.example-container-2 {
+  grid-row: 3/6;
+  grid-column: 6/9;
+  background-color: bisque;
+}
+
+.example-list-1,
+.example-list-2 {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box-1 {
+  background-color: red;
+}
+
+.example-box-2 {
+  background-color: green;
+}
+
+.example-box-1,
+.example-box-2 {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  /* background: white; */
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+#drop_zone {
+  border: 5px solid blue;
+  width: 200px;
+  height: 100px;
+}
+
+.example-list {
+  width: 1000px;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-right: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box {
+  width: 200px;
+  height: 200px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  margin-right: 25px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.example-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.example-boundary-hector {
+  grid-column: 3/18;
+  grid-row: 2/25;
+  /* width: 400px;
+  height: 400px; */
+  background-color: #c2ecfc;
+  max-width: 100%;
+  border: dotted #ccc 2px;
 }
