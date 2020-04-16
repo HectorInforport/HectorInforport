@@ -179,24 +179,24 @@ export class CssGridDaysComponent implements OnInit {
   //   }
   // }
 
-  newDiv() {
-    const nuevo = {
-      name: 'NEW',
-      day: 1,
-      title: 'NEW',
-      start: 20,
-      end: 23,
-      size: 1000,
-      orientation: 'undefined',
-      width: 65,
-      heigth: 60,
-      color: 'purple',
-      dragPosition: { x: 317, y: 239 },
-      offsetTop: 0,
-      offsetLeft: 0,
-    };
-    this.vessels.push(nuevo);
-  }
+  // newDiv() {
+  //   const nuevo = {
+  //     name: 'NEW',
+  //     day: 1,
+  //     title: 'NEW',
+  //     start: 20,
+  //     end: 23,
+  //     size: 1000,
+  //     orientation: 'undefined',
+  //     width: 65,
+  //     heigth: 60,
+  //     color: 'purple',
+  //     dragPosition: { x: 317, y: 239 },
+  //     offsetTop: 0,
+  //     offsetLeft: 0,
+  //   };
+  //   this.vessels.push(nuevo);
+  // }
 
   changePosition(position: any) {
     const numero = Math.random() * 20;
@@ -228,11 +228,11 @@ export class CssGridDaysComponent implements OnInit {
     event.currentTarget.style.backgroundCOlor = 'yellow';
   }
 
-  dameDatos(position: any) {
-    console.log('DAME DATOS');
-    console.log('antes', this.vessels[position].offsetTop);
-    console.log('antes', this.vessels[position].offsetLeft);
-  }
+  // dameDatos(position: any) {
+  //   console.log('DAME DATOS');
+  //   console.log('antes', this.vessels[position].offsetTop);
+  //   console.log('antes', this.vessels[position].offsetLeft);
+  // }
 
   onResizeEnd(event: ResizeEvent): void {
     console.log('Element was resized', event);

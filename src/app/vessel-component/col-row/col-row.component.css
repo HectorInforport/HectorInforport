@@ -19,6 +19,21 @@ body {
   border: 1px dashed #ccc;
 }
 
+/**CONTENEDOR CAJAS BARCOS */
+#grid-inside-grid {
+  border: 1px solid #ccc;
+  grid-column: 3/18;
+  grid-row: 2/25;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+}
+
+.grids {
+  border: 1px solid #ccc;
+}
+
+/**FIN CONTENEDOR CAJAS BARCOS */
+
 .shift-box {
   background-color: var(--blue);
   color: white;

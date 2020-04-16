@@ -1,6 +1,6 @@
-<button class="btn btn-primary m-2" (click)="newDiv()">
+<!-- <button class="btn btn-primary m-2" (click)="newDiv()">
   <i class="fas fa-plus-circle bg-primary"></i> New Vessel
-</button>
+</button> -->
 
 <div class="layout">
   <div class="day-box text-center">DAY</div>
@@ -19,30 +19,28 @@
     {{ hour }}
   </div>
 
-  <!-- contenedor-->
-  <div id="container" *ngFor="let c of container; let i = index" cdkDrag></div>
-  <!-- fin contenedor-->
+  <!-- CONTENEDOR CAJAS BARCOS-->
+  <div id="grid-inside-grid">
+    <div class="grids" *ngFor="let c of container; let i = index">
+      {{ i + 1 }}
+    </div>
+  </div>
+  <!-- FIN CONTENEDOR CAJAS BARCOS-->
 
   <div
-    title="hola que ases"
-    style="
-      background-color: red;
-      grid-row-start: 2;
-      grid-row-end: 3;
-      grid-column-start: 3;
-      grid-column-end: 18;
-    "
-  ></div>
-
-  <div
-    style="
-      background-color: green;
-      grid-row-start: 3;
-      grid-row-end: 4;
-      grid-column-start: 3;
-      grid-column-end: 6;
-    "
-  ></div>
+    *ngFor="let vessel of vessels"
+    title="{{ vessel.title }}"
+    [ngStyle]="{
+      'grid-column-start': vessel.gridColumnStart,
+      'grid-column-end': vessel.gridColumnEnd,
+      'background-color': vessel.color,
+      'grid-row-start': vessel.gridRowStart,
+      'grid-row-end': vessel.gridRowEnd
+    }"
+  >
+    {{ vessel.name }} {{ vessel.gridColumnStart }}/{{ vessel.gridColumnEnd }}
+  </div>
+  <!--
 
   <div
     style="
@@ -62,5 +60,5 @@
       grid-column-start: 3;
       grid-column-end: 8;
     "
-  ></div>
+  ></div> -->
 </div>
