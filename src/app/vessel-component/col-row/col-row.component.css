@@ -12,7 +12,7 @@ body {
 .layout {
   display: grid;
   grid-template-columns: 5fr 5fr repeat(15, 3fr);
-  grid-template-rows: 3fr repeat(23, 0.5fr);
+  grid-template-rows: 3fr repeat(23, 1fr);
 }
 
 #container {
@@ -33,6 +33,17 @@ body {
 }
 
 /**FIN CONTENEDOR CAJAS BARCOS */
+
+.box-border {
+  border-radius: 10px;
+}
+.box-border-left {
+  border-left: 9px solid black;
+}
+
+.box-border-right {
+  border-right: 9px solid black;
+}
 
 .shift-box {
   background-color: var(--blue);

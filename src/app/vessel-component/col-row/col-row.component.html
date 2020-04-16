@@ -28,8 +28,14 @@
   <!-- FIN CONTENEDOR CAJAS BARCOS-->
 
   <div
-    *ngFor="let vessel of vessels"
+    class="box-border text-white"
+    *ngFor="let vessel of vessels; let i = index"
     title="{{ vessel.title }}"
+    (cdkDragEnded)="dragEnd($event, i)"
+    [ngClass]="{
+      'box-border-left': vessel.bow,
+      'box-border-right': !vessel.bow
+    }"
     [ngStyle]="{
       'grid-column-start': vessel.gridColumnStart,
       'grid-column-end': vessel.gridColumnEnd,
@@ -38,9 +44,37 @@
       'grid-row-end': vessel.gridRowEnd
     }"
   >
-    {{ vessel.name }} {{ vessel.gridColumnStart }}/{{ vessel.gridColumnEnd }}
+    {{ vessel.name }}
+    <i
+      class="fas fa-angle-up text-dark pr-1 fa-lg"
+      (click)="changePositionLessY(i)"
+    ></i>
+    <i
+      class="fas fa-angle-down text-dark pr-2 fa-lg"
+      (click)="changePositionMoreY(i)"
+    ></i>
+
+    <i
+      class="fas fa-angle-left text-dark pr-1 fa-lg"
+      (click)="changePositionLessX(i)"
+    ></i>
+    <i
+      class="fas fa-angle-right text-dark pr-2 fa-lg"
+      (click)="changePositionMoreX(i)"
+    ></i>
+
+    <i
+      class="fas fa-angle-double-left text-info pr-1 fa-lg"
+      (click)="lessWidth(i)"
+    ></i>
+    <i
+      class="fas fa-angle-double-right text-info fa-lg"
+      (click)="moreWidth(i)"
+    ></i>
   </div>
-  <!--
+</div>
+
+<!--
 
   <div
     style="
@@ -61,4 +95,3 @@
       grid-column-end: 8;
     "
   ></div> -->
-</div>
