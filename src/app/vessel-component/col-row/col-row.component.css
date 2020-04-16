@@ -12,8 +12,14 @@ body {
 .layout {
   display: grid;
   grid-template-columns: 5fr 5fr repeat(15, 3fr);
-  grid-template-rows: 3fr repeat(23, 1fr);
+  grid-template-rows: 75px repeat(23, 25px);
 }
+
+/* .layout {
+  display: grid;
+  grid-template-columns: 5fr 5fr repeat(15, 3fr);
+  grid-template-rows: 3fr repeat(23, 1fr);
+} */
 
 #container {
   border: 1px dashed #ccc;
@@ -43,6 +49,9 @@ body {
 
 .box-border-right {
   border-right: 9px solid black;
+}
+
+.box-border i {
 }
 
 .shift-box {

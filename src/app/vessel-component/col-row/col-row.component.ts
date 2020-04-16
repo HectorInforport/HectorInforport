@@ -5,8 +5,24 @@ import { HOURS } from '../../utils/hours';
 import { VESSELS } from '../../utils/vessels';
 
 // Import Cdk Drag & Drop
-import { CdkDragDrop, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { element } from 'protractor';
+import {
+  CdkDragDrop,
+  CdkDragEnd,
+  CdkDragStart,
+  CdkDragMove,
+} from '@angular/cdk/drag-drop';
+
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours,
+  getHours,
+} from 'date-fns';
 
 @Component({
   selector: 'app-col-row',
@@ -33,22 +49,29 @@ export class ColRowComponent implements OnInit {
   ngOnInit() {}
 
   dragEnd(event: CdkDragEnd, position?: any) {
-    console.log('DRAG END', event);
-    console.log('position:' + position);
-    console.log(' X: ' + event.distance.x + ' Y: ' + event.distance.y);
-    console.log(
-      ' Offset Top(Y): ' +
-        event.source.element.nativeElement.offsetTop +
-        ' Offset Left(X): ' +
-        event.source.element.nativeElement.offsetLeft
-    );
+    // console.log('DRAG END', event);
+    // console.log('position:' + position);
+    // console.log(' X: ' + event.distance.x + ' Y: ' + event.distance.y);
+    // console.log(
+    //   ' Offset Top(Y): ' +
+    //     event.source.element.nativeElement.offsetTop +
+    //     ' Offset Left(X): ' +
+    //     event.source.element.nativeElement.offsetLeft
+    // );
+    // const posicionX =
+    //   event.source.element.nativeElement.offsetLeft + event.distance.x;
+    // const posicionY =
+    //   event.source.element.nativeElement.offsetHeight + event.distance.y;
+    // console.log(`posición actual ' + '{ X: ${posicionX}, Y: ${posicionY} `);
+    // console.log('GET FREE DRAG POSITION' + event.source.getFreeDragPosition());
+  }
+  dragMove(event: CdkDragMove): void {
+    // console.log('drag move', event);
+  }
 
-    const posicionX =
-      event.source.element.nativeElement.offsetLeft + event.distance.x;
-    const posicionY =
-      event.source.element.nativeElement.offsetHeight + event.distance.y;
-    console.log(`posición actual ' + '{ X: ${posicionX}, Y: ${posicionY} `);
-    console.log('GET FREE DRAG POSITION' + event.source.getFreeDragPosition());
+  dragStarted(event: CdkDragStart, position: any): void {
+    console.log(position);
+    console.log('drag start', event);
   }
 
   onDragEnded(event: CdkDragEnd): void {
@@ -112,6 +135,40 @@ export class ColRowComponent implements OnInit {
     ) {
       this.vessels[position].gridColumnEnd -= 1;
     }
+  }
+  numeroAleatorio(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  }
+
+  deleteEvent(position: any) {
+    this.vessels.splice(position, 1);
+  }
+
+  addEvent(): void {
+    this.vessels = [
+      ...this.vessels,
+      {
+        name: 'NUEVO',
+        day: 1,
+        title: 'MIA GERMANY',
+        start: addHours(startOfDay(new Date()), 2),
+        end: addHours(new Date(), 2),
+        size: 1000,
+        orientation: 'izq',
+        width: 65,
+        heigth: 36,
+        bow: false,
+        color: '#FFF6C4',
+        border: '#806C00',
+        dragPosition: { x: 0, y: 70 },
+        offsetTop: 0,
+        offsetLeft: 0,
+        gridRowStart: 20,
+        gridRowEnd: 22,
+        gridColumnStart: 15,
+        gridColumnEnd: 18,
+      },
+    ];
   }
 }
 
