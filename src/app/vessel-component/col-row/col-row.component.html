@@ -2,166 +2,200 @@
   <i class="fas fa-plus-circle bg-primary"></i> New Vessel
 </button> -->
 
-<div class="layout">
-  <div class="day-box text-center">DAY</div>
-  <div class="shift-box text-center">SHIFT</div>
-  <div *ngFor="let meter of meters; let i = index" class="meter-box">
-    {{ (i + 1) * 100 }}
-  </div>
-  <div class="today-box" *ngFor="let t of today">
-    {{ t.dia }}
-  </div>
-
-  <div
-    *ngFor="let hour of hours; let i = index"
-    class="hours-box-{{ i + 1 }} text-center"
-  >
-    {{ hour }}
-  </div>
-
-  <!-- CONTENEDOR CAJAS BARCOS-->
-  <div id="grid-inside-grid">
-    <div class="grids" *ngFor="let c of container; let i = index">
-      <!-- {{ i + 1 }} -->
+<div class="layout-icon">
+  <div class="mb-2" *ngFor="let icon of icons">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-center">
+          <i class="fas {{ icon.icon }} {{ icon.color }} pr-1 fa-lg"></i>
+        </h5>
+        <p class="card-text text-center">
+          {{ icon.name }}
+        </p>
+      </div>
     </div>
   </div>
-  <!-- FIN CONTENEDOR CAJAS BARCOS-->
+</div>
+<div class="container p-0">
+  <div class="layout">
+    <div class="day-box text-center">DAY</div>
+    <div class="shift-box text-center">SHIFT</div>
+    <div *ngFor="let meter of meters; let i = index" class="meter-box">
+      {{ (i + 1) * 100 }}
+    </div>
+    <div class="today-box" *ngFor="let t of today">
+      {{ t.dia }}
+    </div>
 
-  <div
-    class="box-border text-info font-weight-bold text-center"
-    *ngFor="let vessel of vessels; let i = index"
-    title="{{ vessel.title }}"
-    (cdkDragEnded)="dragEnd($event, i)"
-    (cdkDragMove)="dragMove($event)"
-    (cdkDragStarted)="dragStarted($event, i)"
-    [ngClass]="{
-      'box-border-left': vessel.bow,
-      'box-border-right': !vessel.bow
-    }"
-    [ngStyle]="{
-      'grid-column-start': vessel.gridColumnStart,
-      'grid-column-end': vessel.gridColumnEnd,
-      'background-color': vessel.color,
-      'grid-row-start': vessel.gridRowStart,
-      'grid-row-end': vessel.gridRowEnd
-    }"
-  >
-    {{ vessel.name }}
-    <i
-      class="fas fa-angle-up text-dark pr-1 fa-lg"
-      (click)="changePositionLessY(i)"
-    ></i>
-    <i
-      class="fas fa-angle-down text-dark pr-2 fa-lg"
-      (click)="changePositionMoreY(i)"
-    ></i>
+    <div
+      *ngFor="let hour of hours; let i = index"
+      class="hours-box-{{ i + 1 }} text-center"
+    >
+      {{ hour }}
+    </div>
 
-    <i
-      class="fas fa-angle-left text-dark pr-1 fa-lg"
-      (click)="changePositionLessX(i)"
-    ></i>
-    <i
-      class="fas fa-angle-right text-dark pr-2 fa-lg"
-      (click)="changePositionMoreX(i)"
-    ></i>
+    <!-- CONTENEDOR CAJAS BARCOS-->
+    <div id="grid-inside-grid">
+      <div class="grids" *ngFor="let c of container; let i = index">
+        <!-- {{ i + 1 }} -->
+      </div>
+    </div>
+    <!-- FIN CONTENEDOR CAJAS BARCOS-->
 
-    <i
-      class="fas fa-angle-double-left text-info pr-1 fa-lg"
-      (click)="lessWidth(i)"
-    ></i>
-    <i
-      class="fas fa-angle-double-right text-info fa-lg"
-      (click)="moreWidth(i)"
-    ></i>
+    <div
+      class="box-border text-info font-weight-bold text-center"
+      *ngFor="let vessel of vessels; let i = index"
+      title="{{ vessel.title }}"
+      (cdkDragEnded)="dragEnd($event, i)"
+      (cdkDragMove)="dragMove($event)"
+      (cdkDragStarted)="dragStarted($event, i)"
+      [ngClass]="{
+        'box-border-left': vessel.bow,
+        'box-border-right': !vessel.bow
+      }"
+      [ngStyle]="{
+        'grid-column-start': vessel.gridColumnStart,
+        'grid-column-end': vessel.gridColumnEnd,
+        'background-color': vessel.color,
+        'grid-row-start': vessel.gridRowStart,
+        'grid-row-end': vessel.gridRowEnd
+      }"
+    >
+      {{ vessel.name }}
+      <i
+        title="Up"
+        class="fas fa-angle-up text-dark pr-1 fa-lg"
+        (click)="moveUp(i)"
+      ></i>
+      <i
+        title="Down"
+        class="fas fa-angle-down text-dark pr-2 fa-lg"
+        (click)="moveDown(i)"
+      ></i>
+
+      <i
+        title="Left"
+        class="fas fa-angle-left text-dark pr-1 fa-lg"
+        (click)="moveLeft(i)"
+      ></i>
+      <i
+        title="Right"
+        class="fas fa-angle-right text-dark pr-2 fa-lg"
+        (click)="moveRight(i)"
+      ></i>
+
+      <i
+        title="Less Width"
+        class="fas fa-angle-double-left text-info pr-1 fa-lg"
+        (click)="lessWidth(i)"
+      ></i>
+      <i
+        title="More Width"
+        class="fas fa-angle-double-right text-info fa-lg pr-2"
+        (click)="moreWidth(i)"
+      ></i>
+      <i
+        title="More Height"
+        class="fas fa-angle-double-up text-info fa-lg pr-1"
+        (click)="moreHeight(i)"
+      ></i>
+
+      <i
+        title="Less Height"
+        class="fas fa-angle-double-down text-info fa-lg"
+        (click)="lessHeight(i)"
+      ></i>
+    </div>
   </div>
 </div>
+<div class="container mt-2">
+  <button class="btn btn-primary pull-right" (click)="addEvent()">
+    Add new
+  </button>
 
-<button class="btn btn-primary pull-right mt-5" (click)="addEvent()">
-  Add new
-</button>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Vessel</th>
+          <th>Vessel Code</th>
+          <th>Primary color</th>
+          <th>Border</th>
+          <th>Actual Arrival</th>
+          <th>Actual Departure</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
 
-<div class="table-responsive mt-3">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Vessel</th>
-        <th>Vessel Code</th>
-        <th>Primary color</th>
-        <th>Border</th>
-        <th>Actual Arrival</th>
-        <th>Actual Departure</th>
-        <th>Remove</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let vessel of vessels; let i = index">
-        <td>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="vessel.name"
-            (keyup)="refresh.next()"
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="vessel.title"
-            (keyup)="refresh.next()"
-          />
-        </td>
-        <td>
-          <input
-            type="color"
-            [(ngModel)]="vessel.color"
-            (change)="refresh.next()"
-          />
-        </td>
-        <td>
-          <input
-            type="color"
-            [(ngModel)]="vessel.border"
-            (change)="refresh.next()"
-          />
-        </td>
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            mwlFlatpickr
-            [(ngModel)]="vessel.start"
-            (ngModelChange)="refresh.next()"
-            [altInput]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            dateFormat="Y-m-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder="Not set"
-          />
-        </td>
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            mwlFlatpickr
-            [(ngModel)]="vessel.end"
-            (ngModelChange)="refresh.next()"
-            [altInput]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            dateFormat="Y-m-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder="Not set"
-          />
-        </td>
-        <td>
-          <button class="btn btn-danger" (click)="deleteEvent(i)">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr *ngFor="let vessel of vessels; let i = index">
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vessel.name"
+              (keyup)="refresh.next()"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="vessel.title"
+              (keyup)="refresh.next()"
+            />
+          </td>
+          <td>
+            <input
+              type="color"
+              [(ngModel)]="vessel.color"
+              (change)="refresh.next()"
+            />
+          </td>
+          <td>
+            <input
+              type="color"
+              [(ngModel)]="vessel.border"
+              (change)="refresh.next()"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [(ngModel)]="vessel.start"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [(ngModel)]="vessel.end"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteEvent(i)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

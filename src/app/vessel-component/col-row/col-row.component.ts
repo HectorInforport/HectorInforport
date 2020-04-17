@@ -24,6 +24,9 @@ import {
   getHours,
 } from 'date-fns';
 
+import { Subject } from 'rxjs';
+import { ICONS } from '../../utils/icons';
+
 @Component({
   selector: 'app-col-row',
   templateUrl: './col-row.component.html',
@@ -35,6 +38,11 @@ export class ColRowComponent implements OnInit {
   container = Array(345).fill(0);
   dayContainer = Array(23).fill(0);
   tramos = Array(7).fill(0);
+
+  // ICONS
+  icons = ICONS;
+
+  refresh: Subject<any> = new Subject();
 
   today = [{ dia: 'Monday', fecha: '06/04/2020' }];
 
@@ -88,14 +96,14 @@ export class ColRowComponent implements OnInit {
   // }
 
   /** CHANGE POSITION ON AXIS Y */
-  changePositionMoreY(position: any) {
+  moveDown(position: any) {
     if (this.vessels[position].gridRowEnd < 25) {
       this.vessels[position].gridRowStart += 1;
       this.vessels[position].gridRowEnd += 1;
     }
   }
 
-  changePositionLessY(position: any) {
+  moveUp(position: any) {
     if (this.vessels[position].gridRowStart > 2) {
       this.vessels[position].gridRowStart -= 1;
       this.vessels[position].gridRowEnd -= 1;
@@ -104,14 +112,14 @@ export class ColRowComponent implements OnInit {
 
   /** CHANGE POSITION ON AXIS X */
 
-  changePositionMoreX(position: any) {
+  moveRight(position: any) {
     if (this.vessels[position].gridColumnEnd < 18) {
       this.vessels[position].gridColumnStart += 1;
       this.vessels[position].gridColumnEnd += 1;
     }
   }
 
-  changePositionLessX(position: any) {
+  moveLeft(position: any) {
     if (this.vessels[position].gridColumnStart > 3) {
       this.vessels[position].gridColumnStart -= 1;
       this.vessels[position].gridColumnEnd -= 1;
@@ -136,6 +144,48 @@ export class ColRowComponent implements OnInit {
       this.vessels[position].gridColumnEnd -= 1;
     }
   }
+
+  // TODO
+  // MORE HEIGHT
+  moreHeight(position: any) {
+    console.log('entramos en more height');
+    if (this.vessels[position].gridRowStart > 2) {
+      console.log('es menor');
+      this.vessels[position].gridRowStart -= 1;
+    }
+
+    console.log(
+      'AHORA: ' +
+        'Row start: ' +
+        this.vessels[position].gridRowStart +
+        ' ' +
+        'Row End: ' +
+        this.vessels[position].gridRowEnd
+    );
+  }
+
+  // TODO
+  // LESS HEIGHT
+  lessHeight(position: any) {
+    console.log('entramos en less height');
+    if (
+      this.vessels[position].gridRowStart <
+      this.vessels[position].gridRowEnd - 1
+    ) {
+      console.log('es menor');
+      this.vessels[position].gridRowStart += 1;
+    }
+
+    console.log(
+      'AHORA: ' +
+        'Row start: ' +
+        this.vessels[position].gridRowStart +
+        ' ' +
+        'Row End: ' +
+        this.vessels[position].gridRowEnd
+    );
+  }
+
   numeroAleatorio(min, max) {
     return Math.round(Math.random() * (max - min) + min);
   }
