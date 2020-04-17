@@ -85,6 +85,12 @@ body {
   border-right: 1px solid white;
 }
 
+.vessel:hover {
+  border: 3px solid #ff8d54 !important;
+  background-color: rgba(255, 192, 161, 0.8) !important;
+  z-index: 9999;
+}
+
 .meter-box {
   background-color: var(--blue);
   padding: 15px 0px 15px 0px;

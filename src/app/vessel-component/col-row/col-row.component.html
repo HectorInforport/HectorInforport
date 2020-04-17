@@ -43,7 +43,7 @@
     <!-- FIN CONTENEDOR CAJAS BARCOS-->
 
     <div
-      class="box-border text-info font-weight-bold text-center"
+      class="box-border text-info font-weight-bold text-center vessel"
       *ngFor="let vessel of vessels; let i = index"
       title="{{ vessel.title }}"
       (cdkDragEnded)="dragEnd($event, i)"
