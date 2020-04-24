@@ -5,32 +5,20 @@ import { HOURS } from '../../utils/hours';
 import { VESSELS } from '../../utils/vessels';
 
 // Import Cdk Drag & Drop
-import {
-  CdkDragDrop,
-  CdkDragEnd,
-  CdkDragStart,
-  CdkDragMove,
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, CdkDragStart, CdkDragMove } from '@angular/cdk/drag-drop';
 
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-  getHours,
-} from 'date-fns';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getHours } from 'date-fns';
 
 import { Subject } from 'rxjs';
 import { ICONS } from '../../utils/icons';
 
+// Import the resized event model
+import { ResizeEvent } from 'angular-resizable-element';
+
 @Component({
   selector: 'app-col-row',
   templateUrl: './col-row.component.html',
-  styleUrls: ['./col-row.component.css'],
+  styleUrls: ['./col-row.component.css']
 })
 export class ColRowComponent implements OnInit {
   // GRID STRUCTURE
@@ -51,6 +39,12 @@ export class ColRowComponent implements OnInit {
   vessels = VESSELS;
 
   dragPosition = { x: 581, y: -322 };
+
+  // DEFINE GRID ROW AND COLUMNS
+  gridColumnStart = 3;
+  gridColumnEnd = 18;
+  gridRowStart = 2;
+  gridRowEnd = 25;
 
   constructor() {}
 
@@ -86,6 +80,310 @@ export class ColRowComponent implements OnInit {
     console.log(event.source.getFreeDragPosition()); // returns { x: 0, y: 0 }
   }
 
+  onResizeEnd(event: ResizeEvent, position: any): void {
+    console.log('Element was resized', event, position);
+    // console.log('Edges', event.edges);
+    // console.log(event.edges[0]);
+    // console.log('Edges', event.edges.right);
+    let right;
+    let left;
+    let bottom;
+    let top;
+    let valor;
+
+    if (event.edges.right) {
+      console.log('Muevo por la derecha');
+      right = event.edges.right;
+      console.log(right);
+
+      if (right > 1) {
+        console.log('aumento');
+        switch (true) {
+          case right >= 50 && right <= 90:
+            console.log('1', right);
+            valor = 1;
+            break;
+          case right >= 110 && right <= 150:
+            console.log('2');
+            valor = 2;
+            break;
+          case right >= 170 && right <= 210:
+            console.log('3');
+            valor = 3;
+            break;
+          case right >= 230 && right <= 270:
+            console.log('4');
+            valor = 4;
+            break;
+          case right >= 290 && right <= 330:
+            console.log('5');
+            valor = 5;
+            break;
+          case right >= 350 && right <= 390:
+            console.log('6');
+            valor = 6;
+            break;
+          case right >= 410 && right <= 450:
+            console.log('7');
+            valor = 7;
+            break;
+          case right >= 470 && right <= 510:
+            console.log('8');
+            valor = 8;
+            break;
+          case right >= 530 && right <= 570:
+            console.log('9');
+            valor = 9;
+            break;
+          case right >= 590 && right <= 630:
+            console.log('10');
+            valor = 10;
+            break;
+          case right >= 650 && right <= 690:
+            console.log('11');
+            valor = 11;
+            break;
+          case right >= 710 && right <= 750:
+            console.log('12');
+            valor = 12;
+            break;
+          case right >= 770 && right <= 810:
+            console.log('13');
+            valor = 13;
+            break;
+          case right >= 830 && right <= 870:
+            console.log('14');
+            valor = 14;
+            break;
+          default:
+            valor = 0;
+            console.log('default');
+        }
+        this.moreWidthResizeByRight(position, valor);
+      } else {
+        console.log('disminuyo');
+        switch (true) {
+          case right <= -50 && right >= -90:
+            console.log('1', left);
+            valor = 1;
+            break;
+          case right <= -110 && right >= -150:
+            console.log('2');
+            valor = 2;
+            break;
+          case right <= -170 && right >= -210:
+            console.log('3');
+            valor = 3;
+            break;
+          case right <= -230 && right >= -270:
+            console.log('4');
+            valor = 4;
+            break;
+          case right <= -290 && right >= -330:
+            console.log('5');
+            valor = 5;
+            break;
+          case right <= -350 && right >= -390:
+            console.log('6');
+            valor = 6;
+            break;
+          case right <= -410 && right >= -450:
+            console.log('7');
+            valor = 7;
+            break;
+          case right <= -470 && right >= -510:
+            console.log('8');
+            valor = 8;
+            break;
+          case right <= -530 && right >= -570:
+            console.log('9');
+            valor = 9;
+            break;
+          case right <= -590 && right >= -630:
+            console.log('10');
+            valor = 10;
+            break;
+          case right <= -650 && right >= -690:
+            console.log('11');
+            valor = 11;
+            break;
+          case right <= -574 && right >= -629:
+            console.log('12');
+            valor = 12;
+            break;
+          case right <= -710 && right >= -750:
+            console.log('13');
+            valor = 13;
+            break;
+          case right <= -830 && right >= -870:
+            console.log('14');
+            valor = 14;
+            break;
+          default:
+            valor = 0;
+            console.log('default');
+        }
+        this.lessWidthResizeByRight(position, valor);
+      }
+    }
+
+    if (event.edges.left) {
+      console.log('Muevo por la izquierda');
+      left = event.edges.left;
+      console.log(left);
+
+      if (left > 1) {
+        console.log('mayor', left);
+        switch (true) {
+          case left >= 50 && left <= 90:
+            console.log('1', right);
+            valor = 1;
+            break;
+          case left >= 110 && left <= 150:
+            console.log('2');
+            valor = 2;
+            break;
+          case left >= 170 && left <= 210:
+            console.log('3');
+            valor = 3;
+            break;
+          case left >= 230 && left <= 270:
+            console.log('4');
+            valor = 4;
+            break;
+          case left >= 290 && left <= 330:
+            console.log('5');
+            valor = 5;
+            break;
+          case left >= 350 && left <= 390:
+            console.log('6');
+            valor = 6;
+            break;
+          case left >= 410 && left <= 450:
+            console.log('7');
+            valor = 7;
+            break;
+          case left >= 470 && left <= 510:
+            console.log('8');
+            valor = 8;
+            break;
+          case left >= 530 && left <= 570:
+            console.log('9');
+            valor = 9;
+            break;
+          case left >= 590 && left <= 630:
+            console.log('10');
+            valor = 10;
+            break;
+          case left >= 650 && left <= 690:
+            console.log('11');
+            valor = 11;
+            break;
+          case left >= 710 && left <= 750:
+            console.log('12');
+            valor = 12;
+            break;
+          case left >= 770 && left <= 810:
+            console.log('13');
+            valor = 13;
+            break;
+          case left >= 830 && left <= 870:
+            console.log('14');
+            valor = 14;
+            break;
+          default:
+            valor = 0;
+            console.log('default');
+        }
+        this.lessWidthResizeByLeft(position, valor);
+      } else {
+        console.log('menor');
+        switch (true) {
+          case left <= -50 && left >= -90:
+            console.log('1', left);
+            valor = 1;
+            break;
+          case left <= -110 && left >= -150:
+            console.log('2');
+            valor = 2;
+            break;
+          case left <= -170 && left >= -210:
+            console.log('3');
+            valor = 3;
+            break;
+          case left <= -230 && left >= -270:
+            console.log('4');
+            valor = 4;
+            break;
+          case right <= -290 && right >= -330:
+            console.log('5');
+            valor = 5;
+            break;
+          case left <= -350 && left >= -390:
+            console.log('6');
+            valor = 6;
+            break;
+          case left <= -410 && left >= -450:
+            console.log('7');
+            valor = 7;
+            break;
+          case left <= -470 && left >= -510:
+            console.log('8');
+            valor = 8;
+            break;
+          case left <= -530 && left >= -570:
+            console.log('9');
+            valor = 9;
+            break;
+          case left <= -590 && left >= -630:
+            console.log('10');
+            valor = 10;
+            break;
+          case left <= -650 && left >= -690:
+            console.log('11');
+            valor = 11;
+            break;
+          case left <= -574 && left >= -629:
+            console.log('12');
+            valor = 12;
+            break;
+          case left <= -710 && left >= -750:
+            console.log('13');
+            valor = 13;
+            break;
+          case left <= -830 && left >= -870:
+            console.log('14');
+            valor = 14;
+            break;
+          default:
+            valor = 0;
+            console.log('default');
+        }
+
+        console.log(valor);
+        this.moreWidthResizeByLeft(position, valor);
+      }
+    }
+
+    if (event.edges.bottom) {
+      console.log('Muevo de  abajo');
+      bottom = event.edges.bottom;
+      console.log(bottom);
+    }
+
+    if (event.edges.top) {
+      console.log('Arrastra de arriba');
+      top = event.edges.top;
+      console.log(top);
+    }
+
+    const arrayItems = [{ arriba: 1, abajo: 2, derecha: 3, izquierda: 4 }];
+
+    // this.height = event.rectangle.height;
+    // this.height = event.rectangle.height;
+    // this.width = event.rectangle.width;
+  }
+
   // changePosition(position: any) {
   //   console.log(this.vessels[position].gridColumnStart);
   //   console.log(this.vessels[position].gridColumnEnd);
@@ -97,30 +395,94 @@ export class ColRowComponent implements OnInit {
 
   /** CHANGE POSITION ON AXIS Y */
   moveDown(position: any) {
-    if (this.vessels[position].gridRowEnd < 25) {
+    if (this.vessels[position].gridRowEnd < this.gridRowEnd) {
       this.vessels[position].gridRowStart += 1;
       this.vessels[position].gridRowEnd += 1;
     }
   }
 
   moveUp(position: any) {
-    if (this.vessels[position].gridRowStart > 2) {
+    if (this.vessels[position].gridRowStart > this.gridRowStart) {
       this.vessels[position].gridRowStart -= 1;
       this.vessels[position].gridRowEnd -= 1;
     }
   }
 
-  /** CHANGE POSITION ON AXIS X */
+  /** RESIZE MOVIMENTS */
+  /** MORE WIDTH RESIZE BY RIGHT */
+  moreWidthResizeByRight(position: any, valor: number) {
+    if (this.vessels[position].gridColumnEnd < this.gridColumnEnd) {
+      this.vessels[position].gridColumnEnd += valor;
+    } else if (
+      this.vessels[position].gridColumnEnd >= this.gridColumnEnd &&
+      this.vessels[position].gridColumnStart > this.gridColumnStart
+    ) {
+      window.alert('Move the ship to the left to take up more space');
+    } else if (
+      this.vessels[position].gridColumnEnd >= this.gridColumnEnd &&
+      this.vessels[position].gridColumnStart >= this.gridColumnStart
+    ) {
+      window.alert('you can take up no more space on the dock');
+    }
+  }
+  /** END MORE WIDTH RESIZE BY RIGHT */
 
+  /** LESS WIDTH RESIZE BY RIGHT */
+  lessWidthResizeByRight(position: any, valor: number) {
+    console.log('start: ' + this.vessels[position].gridColumnStart + ' end: ' + this.vessels[position].gridColumnEnd);
+    if (
+      this.vessels[position].gridColumnStart >= this.gridColumnStart &&
+      this.vessels[position].gridColumnEnd > this.vessels[position].gridColumnStart + 1
+    ) {
+      this.vessels[position].gridColumnEnd -= valor;
+    }
+  }
+  /** END WIDTH RESIZE BY RIGHT */
+
+  /** MORE WIDTH RESIZE BY LEFT */
+  moreWidthResizeByLeft(position: any, valor: number) {
+    console.log('moreWidthResizeByLeft');
+    console.log('start:', this.vessels[position].gridColumnStart);
+    console.log('end:', this.vessels[position].gridColumnEnd);
+    if (this.vessels[position].gridColumnStart > this.gridColumnStart) {
+      this.vessels[position].gridColumnStart -= valor;
+    }
+
+    console.log('start:', this.vessels[position].gridColumnStart);
+    console.log('end:', this.vessels[position].gridColumnEnd);
+  }
+  /** MORE WIDTH RESIZE BY LEFT */
+
+  /** LESS WIDTH RESIZE BY LEFT */
+  lessWidthResizeByLeft(position: any, valor: number) {
+    console.log('lessWidthResizeByLeft' + ' valor ' + valor);
+    console.log('start: ', this.vessels[position].gridColumnStart + ' end:' + this.vessels[position].gridColumnEnd);
+    if (this.vessels[position].gridColumnStart < this.vessels[position].gridColumnEnd) {
+      console.log('es menor');
+      this.vessels[position].gridColumnStart += valor;
+      console.log('start: ', this.vessels[position].gridColumnStart + ' end:' + this.vessels[position].gridColumnEnd);
+      if (this.vessels[position].gridColumnStart === this.vessels[position].gridColumnEnd) {
+        this.vessels[position].gridColumnStart = this.vessels[position].gridColumnEnd - 1;
+      }
+    }
+
+    console.log('start:', this.vessels[position].gridColumnStart);
+    console.log('end:', this.vessels[position].gridColumnEnd);
+  }
+  /** LESS WIDTH RESIZE BY LEFT */
+
+  /** END RESIZE MOVIMENTS */
+
+  /** CHANGE POSITION ON AXIS X */
+  // MORE WIDTH
   moveRight(position: any) {
-    if (this.vessels[position].gridColumnEnd < 18) {
+    if (this.vessels[position].gridColumnEnd < this.gridRowEnd) {
       this.vessels[position].gridColumnStart += 1;
       this.vessels[position].gridColumnEnd += 1;
     }
   }
-
   moveLeft(position: any) {
-    if (this.vessels[position].gridColumnStart > 3) {
+    if (this.vessels[position].gridColumnStart > this.gridColumnStart) {
       this.vessels[position].gridColumnStart -= 1;
       this.vessels[position].gridColumnEnd -= 1;
     }
@@ -129,61 +491,48 @@ export class ColRowComponent implements OnInit {
   // MORE WIDTH
 
   moreWidth(position: any) {
-    if (this.vessels[position].gridColumnEnd < 18) {
+    if (this.vessels[position].gridColumnEnd < this.gridColumnEnd) {
       this.vessels[position].gridColumnEnd += 1;
+    } else if (
+      this.vessels[position].gridColumnEnd >= this.gridColumnEnd &&
+      this.vessels[position].gridColumnStart > this.gridColumnStart
+    ) {
+      window.alert('Move the ship to the left to take up more space');
+    } else if (
+      this.vessels[position].gridColumnEnd >= this.gridColumnEnd &&
+      this.vessels[position].gridColumnStart >= this.gridColumnStart
+    ) {
+      window.alert('you can take up no more space on the dock');
     }
   }
   // LESS WIDHT
   lessWidth(position: any) {
-    console.log('gridColumnStart:', this.vessels[position].gridColumnStart);
-    console.log('gridColumnEnd:', this.vessels[position].gridColumnEnd);
+    console.log('start: ' + this.vessels[position].gridColumnStart + ' end: ' + this.vessels[position].gridColumnEnd);
     if (
-      this.vessels[position].gridColumnStart >= 3 &&
-      this.vessels[position].gridColumnEnd > 4
+      this.vessels[position].gridColumnStart >= this.gridColumnStart &&
+      this.vessels[position].gridColumnEnd > this.vessels[position].gridColumnStart + 1
     ) {
       this.vessels[position].gridColumnEnd -= 1;
     }
   }
 
-  // TODO
   // MORE HEIGHT
   moreHeight(position: any) {
-    console.log('entramos en more height');
-    if (this.vessels[position].gridRowStart > 2) {
-      console.log('es menor');
+    if (this.vessels[position].gridRowStart > this.gridRowStart) {
       this.vessels[position].gridRowStart -= 1;
+      console.log('start: ' + this.vessels[position].gridRowStart + ' end: ' + this.vessels[position].gridRowEnd);
+    } else if (this.vessels[position].gridRowStart <= 2 && this.vessels[position].gridRowEnd < 25) {
+      window.alert('if you want to increase the hours, position the boat first at the time of departure');
+    } else if (this.vessels[position].gridRowStart === 2 && this.vessels[position].gridRowEnd === 25) {
+      window.alert('can no longer select more hours today');
     }
-
-    console.log(
-      'AHORA: ' +
-        'Row start: ' +
-        this.vessels[position].gridRowStart +
-        ' ' +
-        'Row End: ' +
-        this.vessels[position].gridRowEnd
-    );
   }
 
-  // TODO
   // LESS HEIGHT
   lessHeight(position: any) {
-    console.log('entramos en less height');
-    if (
-      this.vessels[position].gridRowStart <
-      this.vessels[position].gridRowEnd - 1
-    ) {
-      console.log('es menor');
+    if (this.vessels[position].gridRowStart < this.vessels[position].gridRowEnd - 1) {
       this.vessels[position].gridRowStart += 1;
     }
-
-    console.log(
-      'AHORA: ' +
-        'Row start: ' +
-        this.vessels[position].gridRowStart +
-        ' ' +
-        'Row End: ' +
-        this.vessels[position].gridRowEnd
-    );
   }
 
   numeroAleatorio(min, max) {
@@ -216,8 +565,8 @@ export class ColRowComponent implements OnInit {
         gridRowStart: 20,
         gridRowEnd: 22,
         gridColumnStart: 15,
-        gridColumnEnd: 18,
-      },
+        gridColumnEnd: 18
+      }
     ];
   }
 }

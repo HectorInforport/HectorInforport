@@ -1,14 +1,4 @@
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-  getHours,
-} from 'date-fns';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, getHours } from 'date-fns';
 
 export const VESSELS = [
   {
@@ -27,7 +17,7 @@ export const VESSELS = [
     gridRowStart: 2,
     gridRowEnd: 3,
     gridColumnStart: 3,
-    gridColumnEnd: 18,
+    gridColumnEnd: 18
     // offsetTop: 100,
     // offsetLeft: 100,
   },
@@ -47,7 +37,7 @@ export const VESSELS = [
     gridRowStart: 3,
     gridRowEnd: 4,
     gridColumnStart: 5,
-    gridColumnEnd: 10,
+    gridColumnEnd: 10
     // offsetTop: 100,
     // offsetLeft: 100,
   },
@@ -67,7 +57,7 @@ export const VESSELS = [
     gridRowStart: 4,
     gridRowEnd: 5,
     gridColumnStart: 6,
-    gridColumnEnd: 12,
+    gridColumnEnd: 12
     // offsetTop: 100,
     // offsetLeft: 100,
   },
@@ -89,7 +79,7 @@ export const VESSELS = [
     gridRowStart: 6,
     gridRowEnd: 12,
     gridColumnStart: 4,
-    gridColumnEnd: 8,
+    gridColumnEnd: 8
   },
   {
     name: 'EMP',
@@ -109,7 +99,7 @@ export const VESSELS = [
     gridRowStart: 16,
     gridRowEnd: 18,
     gridColumnStart: 9,
-    gridColumnEnd: 18,
+    gridColumnEnd: 18
   },
   {
     name: 'MIA',
@@ -130,7 +120,7 @@ export const VESSELS = [
     gridRowStart: 5,
     gridRowEnd: 9,
     gridColumnStart: 17,
-    gridColumnEnd: 18,
+    gridColumnEnd: 18
   },
   {
     name: 'MIA2',
@@ -150,6 +140,27 @@ export const VESSELS = [
     gridRowStart: 21,
     gridRowEnd: 23,
     gridColumnStart: 12,
-    gridColumnEnd: 13,
+    gridColumnEnd: 13
   },
+
+  {
+    name: 'HCT',
+    day: 1,
+    title: 'BRA SPAIN',
+    start: subDays(startOfDay(new Date()), 1),
+    end: addDays(new Date(), 1),
+    size: 1000,
+    bow: true,
+    width: 65,
+    heigth: 36,
+    color: '#FAE3E3',
+    border: '#FF9C9C',
+    dragPosition: { x: 0, y: 70 },
+    gridRowStart: 15,
+    gridRowEnd: 16,
+    gridColumnStart: 3,
+    gridColumnEnd: 4
+    // offsetTop: 100,
+    // offsetLeft: 100,
+  }
 ];

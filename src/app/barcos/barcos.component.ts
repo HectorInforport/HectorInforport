@@ -26,13 +26,7 @@ export class BarcosComponent implements OnInit {
     { dia: 'Domingo', number: '7' }
   ];
 
-  timePeriods = [
-    'Bronze age',
-    'Iron age',
-    'Middle ages',
-    'Early modern period',
-    'Long nineteenth century'
-  ];
+  timePeriods = ['Bronze age', 'Iron age', 'Middle ages', 'Early modern period', 'Long nineteenth century'];
 
   /** Posicion Inicial */
   // dragPosition = { x: 225, y: -775 };
@@ -54,22 +48,10 @@ export class BarcosComponent implements OnInit {
     console.log('CURRENT', event.currentIndex);
     console.log('DISTANCE x', event.distance.x);
     console.log('DISTANCE y', event.distance.y);
-    console.log(
-      'OFFSET PARENT:',
-      event.previousContainer.element.nativeElement.offsetParent
-    );
-    console.log(
-      'OFFSET PARENT:',
-      event.previousContainer.element.nativeElement.offsetTop
-    );
-    console.log(
-      'OFFSET PARENT:',
-      event.previousContainer.element.nativeElement.offsetLeft
-    );
-    console.log(
-      'OFFSET PARENT:',
-      event.previousContainer.element.nativeElement.offsetHeight
-    );
+    console.log('OFFSET PARENT:', event.previousContainer.element.nativeElement.offsetParent);
+    console.log('OFFSET PARENT:', event.previousContainer.element.nativeElement.offsetTop);
+    console.log('OFFSET PARENT:', event.previousContainer.element.nativeElement.offsetLeft);
+    console.log('OFFSET PARENT:', event.previousContainer.element.nativeElement.offsetHeight);
 
     console.log(event.previousContainer.data);
     console.log(event.container.data);

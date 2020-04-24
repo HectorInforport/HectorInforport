@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 // Import Cdk Drag & Drop
-import { CdkDragDrop, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
 
 // Import the resized event model
 import { ResizeEvent } from 'angular-resizable-element';
@@ -14,7 +14,7 @@ import { VESSELS } from '../../utils/vessels';
 @Component({
   selector: 'app-drag-drop-resize',
   templateUrl: './drag-drop-resize.component.html',
-  styleUrls: ['./drag-drop-resize.component.css'],
+  styleUrls: ['./drag-drop-resize.component.css']
 })
 export class DragDropResizeComponent implements OnInit {
   @ViewChild('item', { static: true }) item: ElementRef;
@@ -74,7 +74,7 @@ export class DragDropResizeComponent implements OnInit {
     console.log(this.vessels[position].dragPosition);
     this.vessels[position].dragPosition = {
       x: this.vessels[position].dragPosition.x + numero,
-      y: this.vessels[position].dragPosition.y + numero,
+      y: this.vessels[position].dragPosition.y + numero
     };
   }
 
@@ -89,10 +89,10 @@ export class DragDropResizeComponent implements OnInit {
     this.vessels[position].dragPosition.y = this.position.y;
   }
 
-  onDragStart(event) {
-    console.log('EVENTOOOOO');
-    event.dataTransfer.setData('text/plain', event.target.id);
-    event.currentTarget.style.backgroundCOlor = 'yellow';
+  onDragStart(event: CdkDragStart) {
+    console.log('DRAG START', event);
+    // event.dataTransfer.setData('text/plain', event.target.id);
+    // event.currentTarget.style.backgroundCOlor = 'yellow';
   }
 
   onResizeEnd(event: ResizeEvent): void {

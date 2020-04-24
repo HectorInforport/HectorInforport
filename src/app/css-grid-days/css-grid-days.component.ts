@@ -1,18 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  HostListener,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 // Import Cdk Drag & Drop
-import {
-  CdkDragDrop,
-  CdkDragEnd,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 // Import the resized event model
 import { ResizeEvent } from 'angular-resizable-element';
@@ -29,7 +18,7 @@ import { VESSELS } from '../utils/vessels';
 @Component({
   selector: 'app-css-grid-days',
   templateUrl: './css-grid-days.component.html',
-  styleUrls: ['./css-grid-days.component.css'],
+  styleUrls: ['./css-grid-days.component.css']
 })
 export class CssGridDaysComponent implements OnInit {
   @ViewChild('item', { static: true }) item: ElementRef;
@@ -74,41 +63,9 @@ export class CssGridDaysComponent implements OnInit {
   resizer: any;
 
   // Connecting sorting
-  todo = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-  ];
+  todo = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
 
-  done = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-  ];
+  done = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
 
   constructor() {
     this.x = 480;
@@ -206,7 +163,7 @@ export class CssGridDaysComponent implements OnInit {
     console.log(this.vessels[position].dragPosition);
     this.vessels[position].dragPosition = {
       x: this.vessels[position].dragPosition.x + numero,
-      y: this.vessels[position].dragPosition.y + numero,
+      y: this.vessels[position].dragPosition.y + numero
     };
   }
 
@@ -234,7 +191,7 @@ export class CssGridDaysComponent implements OnInit {
   //   console.log('antes', this.vessels[position].offsetLeft);
   // }
 
-  onResizeEnd(event: ResizeEvent): void {
+  onResizeEnd(event: ResizeEvent, position: any): void {
     console.log('Element was resized', event);
     // this.height = event.rectangle.height;
     this.height = event.rectangle.height;

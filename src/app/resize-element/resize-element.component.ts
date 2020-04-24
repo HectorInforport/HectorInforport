@@ -3,7 +3,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 @Component({
   selector: 'app-resize-element',
   templateUrl: './resize-element.component.html',
-  styleUrls: ['./resize-element.component.css'],
+  styleUrls: ['./resize-element.component.css']
 })
 export class ResizeElementComponent implements OnInit {
   tres = Array(3).fill(0);
@@ -50,6 +50,7 @@ export class ResizeElementComponent implements OnInit {
   }
 
   onWindowPress(event: MouseEvent) {
+    console.log('onWindowPress');
     this.draggingWindow = true;
     this.px = event.clientX;
     this.py = event.clientY;
@@ -58,6 +59,7 @@ export class ResizeElementComponent implements OnInit {
   }
 
   onWindowDrag(event: MouseEvent) {
+    console.log('on window drag');
     if (!this.draggingWindow) {
       return;
     }
