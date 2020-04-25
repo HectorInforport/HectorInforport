@@ -23,7 +23,7 @@ import { ResizeEvent } from 'angular-resizable-element';
 export class ColRowComponent implements OnInit {
   // GRID STRUCTURE
   meters = Array(15).fill(0);
-  container = Array(345).fill(0);
+  container = Array(360).fill(0);
   dayContainer = Array(23).fill(0);
   tramos = Array(7).fill(0);
 
@@ -236,7 +236,7 @@ export class ColRowComponent implements OnInit {
         console.log('mayor', left);
         switch (true) {
           case left >= 50 && left <= 90:
-            console.log('1', right);
+            console.log('1', left);
             valor = 1;
             break;
           case left >= 110 && left <= 150:
@@ -369,6 +369,103 @@ export class ColRowComponent implements OnInit {
       console.log('Muevo de  abajo');
       bottom = event.edges.bottom;
       console.log(bottom);
+
+      switch (true) {
+        case bottom >= 15 && bottom <= 40:
+          console.log('1', bottom);
+          valor = 1;
+          break;
+        case bottom >= 40 && bottom <= 65:
+          console.log('2', bottom);
+          valor = 2;
+          break;
+        case bottom >= 65 && bottom <= 90:
+          console.log('3', bottom);
+          valor = 3;
+          break;
+        case bottom >= 90 && bottom <= 115:
+          console.log('4', bottom);
+          valor = 4;
+          break;
+        case bottom >= 115 && bottom <= 140:
+          console.log('5', bottom);
+          valor = 5;
+          break;
+        case bottom >= 140 && bottom <= 165:
+          console.log('6', bottom);
+          valor = 6;
+          break;
+        case bottom >= 165 && bottom <= 190:
+          console.log('7', bottom);
+          valor = 7;
+          break;
+        case bottom >= 190 && bottom <= 215:
+          console.log('8', bottom);
+          valor = 8;
+          break;
+        case bottom >= 215 && bottom <= 240:
+          console.log('9', right);
+          valor = 9;
+          break;
+        case bottom >= 240 && bottom <= 265:
+          console.log('10', bottom);
+          valor = 10;
+          break;
+        case bottom >= 265 && bottom <= 290:
+          console.log('11', bottom);
+          valor = 11;
+          break;
+        case bottom >= 290 && bottom <= 315:
+          console.log('12', bottom);
+          valor = 12;
+          break;
+        case bottom >= 315 && bottom <= 340:
+          console.log('13', bottom);
+          valor = 13;
+          break;
+        case bottom >= 340 && bottom <= 365:
+          console.log('14', bottom);
+          valor = 14;
+          break;
+        case bottom >= 365 && bottom <= 390:
+          console.log('15', bottom);
+          valor = 15;
+          break;
+        case bottom >= 390 && bottom <= 415:
+          console.log('16', bottom);
+          valor = 16;
+          break;
+        case bottom >= 415 && bottom <= 440:
+          console.log('17', bottom);
+          valor = 17;
+          break;
+        case bottom >= 440 && bottom <= 465:
+          console.log('18', bottom);
+          valor = 18;
+          break;
+        case bottom >= 465 && bottom <= 490:
+          console.log('19', bottom);
+          valor = 19;
+          break;
+        case bottom >= 490 && bottom <= 515:
+          console.log('20', bottom);
+          valor = 20;
+          break;
+        case bottom >= 515 && bottom <= 540:
+          console.log('21', bottom);
+          valor = 21;
+          break;
+        case bottom >= 540 && bottom <= 565:
+          console.log('22', bottom);
+          valor = 22;
+          break;
+        case bottom >= 565 && bottom <= 590:
+          console.log('23', bottom);
+          valor = 23;
+          break;
+        default:
+          valor = 0;
+      }
     }
 
     if (event.edges.top) {

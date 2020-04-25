@@ -9,16 +9,17 @@ body {
   text-align: center;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 5fr 5fr repeat(15, 3fr);
-  grid-template-rows: 75px repeat(23, 25px);
-}
 /* .layout {
   display: grid;
   grid-template-columns: 5fr 5fr repeat(15, 3fr);
   grid-template-rows: 3fr repeat(23, 1fr);
 } */
+
+.layout {
+  display: grid;
+  grid-template-columns: 5fr 5fr repeat(15, 3fr);
+  grid-template-rows: 75px repeat(24, 25px);
+}
 
 .layout-icon {
   display: grid;
@@ -38,14 +39,15 @@ body {
 
 /**CONTENEDOR CAJAS BARCOS */
 #grid-inside-grid {
-  border: 1px solid #ccc;
   grid-column: 3/18;
-  grid-row: 2/25;
+  grid-row: 2/26;
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
+  grid-template-columns: repeat(15, 3fr);
+  grid-template-rows: repeat(24, 25px);
 }
 
 .grids {
+  /* border-bottom: 0.3px solid #ccc; */
   border: 1px solid #ccc;
 }
 
@@ -114,7 +116,7 @@ body {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;
-  grid-row: 2/25;
+  grid-row: 2/26;
 }
 
 /** TRAMO DE HORAS **/
@@ -140,20 +142,21 @@ body {
 .hours-box-20,
 .hours-box-21,
 .hours-box-22,
-.hours-box-23 {
+.hours-box-23,
+.hours-box-24 {
   background-color: white;
   text-align: center;
   color: var(--blue);
   font-weight: bold;
   /* line-height: 35px; */
   line-height: 24px;
-  border-bottom: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc; */
+  border: 1px solid #ccc;
 }
 
 .hours-box-1 {
   grid-row: 2/3;
-  border-top: 1px solid #ccc;
 }
 
 .hours-box-2 {
@@ -222,6 +225,10 @@ body {
 
 .hours-box-23 {
   grid-row: 24/25;
+}
+
+.hours-box-24 {
+  grid-row: 25/26;
 }
 
 /** FIN TRAMO DE HORAS **/

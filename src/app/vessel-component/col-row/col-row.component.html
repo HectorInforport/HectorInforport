@@ -23,7 +23,7 @@
 
     <!-- CONTENEDOR CAJAS BARCOS-->
     <div id="grid-inside-grid">
-      <div class="grids" *ngFor="let c of container; let i = index"><!-- {{ i + 1 }} --></div>
+      <div class="grids grids-{{ i + 1 }}" *ngFor="let c of container; let i = index"><!--{{ i + 1 }}--></div>
     </div>
     <!-- FIN CONTENEDOR CAJAS BARCOS-->
 
