@@ -20,7 +20,7 @@ import { DayOftheWeekService } from '../services/day-ofthe-week.service';
 import { MonthService } from '../services/month.service';
 import { ResizeService } from '../services/resize.service';
 import { VesselService } from '../services/vessel.service';
-import { MovimentsService } from '../services/moviments.service';
+import { MovementsService } from '../services/movements.service';
 
 @Component({
   selector: 'app-col-row',
@@ -65,7 +65,7 @@ export class ColRowComponent implements OnInit, AfterContentInit, AfterViewInit 
     public dayOftheWeekService: DayOftheWeekService,
     public monthService: MonthService,
     public vesselService: VesselService,
-    public movimentsService: MovimentsService
+    public movementsService: MovementsService
   ) {}
 
   ngOnInit() {
@@ -92,31 +92,17 @@ export class ColRowComponent implements OnInit, AfterContentInit, AfterViewInit 
 
   /** VESSEL MOVIMENTS */
   moveDown(position: any) {
-    this.movimentsService.moveDown(position);
+    this.movementsService.moveDown(position);
   }
   moveUp(position: any) {
-    this.movimentsService.moveUp(position);
+    this.movementsService.moveUp(position);
   }
   moveRight(position: any) {
-    this.movimentsService.moveRight(position);
+    this.movementsService.moveRight(position);
   }
   moveLeft(position: any) {
-    this.movimentsService.moveLeft(position);
+    this.movementsService.moveLeft(position);
   }
-  // moreWidth(position: any) {
-  //   this.movimentsService.moreWidth(position);
-  // }
-  // lessWidth(position: any) {
-  //   this.movimentsService.lessWidth(position);
-  // }
-  // moreHeight(position: any) {
-  //   this.movimentsService.moreHeight(position);
-  // }
-  // lessHeight(position: any) {
-  //   this.movimentsService.lessHeight(position);
-  // }
-
-  /** END VESSEL MOVIMENTS */
 
   deleteEvent(position: any) {
     this.vesselService.deleteEvent(position, this.vessels);

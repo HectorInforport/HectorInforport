@@ -48,9 +48,8 @@ export class MonthService {
           this.month = 'DECEMBER';
           break;
         default:
-          console.log('Month Error');
+          console.error('Month Error');
       }
-      console.log(this.month);
     } else if (language === 'ES') {
       switch (month) {
         case 0:
@@ -90,9 +89,8 @@ export class MonthService {
           this.month = 'DICIEMBRE';
           break;
         default:
-          console.log('Month Error');
+          console.error('Month Error');
       }
-      console.log(this.month);
     }
   }
 }

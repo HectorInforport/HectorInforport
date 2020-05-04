@@ -33,9 +33,8 @@ export class DayOftheWeekService {
           this.dayOftheWeek = 'SATURDAY';
           break;
         default:
-          console.log('Day Error');
+          console.error('Day Error');
       }
-      console.log(this.dayOftheWeek);
     } else if (language === 'ES') {
       switch (day) {
         case 0:
@@ -60,7 +59,7 @@ export class DayOftheWeekService {
           this.dayOftheWeek = 'SABADO';
           break;
         default:
-          console.log('Error en el día');
+          console.error('Error en el día');
       }
     }
   }
